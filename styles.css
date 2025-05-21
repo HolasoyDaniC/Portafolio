@@ -1,0 +1,1125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #000;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+#container2 {
+  padding: 1rem 10rem;
+}
+
+/* Header and Navigation */
+header {
+  padding: 20px 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 15px;
+  background-color: #000;
+  transform: translateX(10px);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
+}
+
+.nav-links a.active {
+  font-weight: 600;
+}
+
+.contact-btn {
+  border: 1px solid #000;
+  padding: 5px 15px;
+  border-radius: 4px;
+}
+
+/* Banner Section */
+.banner {
+  position: relative;
+  min-height: 500px;
+  padding: 60px 0 0 0;
+  overflow: hidden;
+}
+
+.gradient-bg {
+  position: fixed; /* Change from absolute to fixed to follow across the entire page */
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 165, 0, 0.7) 0%,
+    rgba(255, 99, 71, 0.5) 70%
+  );
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.8;
+  transition: background 0.5s ease, transform 0.3s ease;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.banner-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.banner-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1px solid #000;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Services Section */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 0px;
+  padding-top: 0px;
+  border-top: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.service {
+  padding: 40px 0;
+}
+
+.service-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.service-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Corner decoration */
+.corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 3rem;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
+  #container2 {
+    padding: 1rem 1rem;
+  }
+}
+
+/* Typewriter cursor effect */
+.typewriter-text::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/*segundo banner*/
+.banner2 {
+  background-color: #000;
+  color: #fff;
+  padding: 6rem 15%;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.banner2.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.banner2-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.app-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.app-icon {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.app-icon.animate {
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.icon-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .banner2-title {
+    font-size: 1.8rem;
+    padding: 2rem 5%;
+  }
+
+  .app-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .icon-image {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner2 {
+    padding: 2rem 1rem;
+  }
+
+  .banner2-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .app-icons {
+    gap: 1rem;
+  }
+
+  .app-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .icon-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/*tercer banner*/
+
+.banner3 {
+  background-color: #000;
+  color: #fff;
+  padding: 3rem 2rem;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner3-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.banner3-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner3-carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.banner3-project {
+  padding: 0 1rem;
+  box-sizing: border-box;
+  min-width: 250px;
+}
+
+.banner3-project-number {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* CORRECCIÓN 3: Efecto hover en imágenes de proyectos */
+.banner3-project-image-container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.banner3-project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.ver-mas-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid white;
+  pointer-events: none; /* Para que no interfiera con los clics mientras está oculto */
+}
+
+.banner3-project-image-container:hover .banner3-project-image {
+  filter: blur(4px);
+  transform: scale(1.05);
+}
+
+.banner3-project-image-container:hover .ver-mas-btn {
+  opacity: 1;
+  pointer-events: auto; /* Habilitar interacción cuando es visible */
+}
+
+.banner3-project-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.banner3-project-brand {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  text-align: left;
+}
+
+.banner3-project-brand h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.banner3-project-brand p {
+  font-size: 0.9rem;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.banner3-project-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+}
+
+.banner3-project-description {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #aaa;
+  margin: 0;
+  max-height: 80px;
+  overflow: hidden;
+}
+
+.banner3-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.banner3-nav-button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: opacity 0.3s;
+}
+
+.banner3-nav-button:hover {
+  opacity: 0.7;
+}
+
+.banner3-nav-button:focus {
+  outline: none;
+}
+
+@media (max-width: 1024px) {
+  .banner3-project {
+    /* flex: 0 0 33.333%;*/
+  }
+}
+
+@media (max-width: 768px) {
+  .banner3-project {
+    /*  flex: 0 0 50%;*/
+  }
+}
+
+@media (max-width: 480px) {
+  .banner3-project {
+    /*flex: 0 0 100%;*/
+  }
+
+  .banner3-title {
+    font-size: 2rem;
+  }
+}
+
+/*banner 4*/
+
+.certificates-container {
+  width: 100%;
+  padding: 2rem;
+  background-color: black;
+}
+
+.certificates-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.certificates-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.tab-button:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+
+.tab-button.active {
+  font-weight: bold;
+}
+
+.tab-button.active:after {
+  width: 100%;
+}
+
+.tab-button:not(:last-child) {
+  position: relative;
+}
+
+.tab-button:not(:last-child)::before {
+  content: "|";
+  position: absolute;
+  right: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.certificates-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px;
+}
+
+.certificate {
+  min-width: calc(33.333% - 14px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.certificate.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.certificate img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-navigation {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* CORRECCIÓN 1: Flechas en la sección de certificados */
+.certificatearrow {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 1rem;
+  pointer-events: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  /* Posición específica para las flechas de certificados */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.certificates-carousel .Prev-arrow {
+  left: 10px;
+}
+
+.certificates-carousel .Next-arrow {
+  right: 10px;
+}
+
+.certificatearrow:hover {
+  opacity: 1;
+}
+
+.certificatearrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 992px) {
+  .certificate {
+    min-width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 576px) {
+  .certificate {
+    min-width: 100%;
+  }
+
+  .certificates-title {
+    font-size: 2rem;
+  }
+
+  .tab-button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+} /*banner 5 y 6*/
+.container {
+  margin: 0;
+  padding: 1rem;
+  max-width: 100%;
+}
+
+/* Banner 5 - Opinions */
+.banner5 {
+  position: relative;
+  padding: 1rem 0;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000000, #331800);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  color: white;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.banner5-title {
+  font-size: 4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.opinions-grid {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.opinions-row {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.opinions-row-1 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.opinions-row-2 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.opinion-card {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 17px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+  height: 250px;
+  flex: 1;
+}
+
+.opinion-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.opinion-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+.opinion-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.opinion-author {
+  flex: 1;
+}
+
+.opinion-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.opinion-title {
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.opinion-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #ddd;
+  margin-bottom: 1rem;
+  height: 120px;
+  overflow: hidden;
+}
+
+.opinion-stars {
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.carousel-navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.carousel-arrows {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  z-index: 10;
+}
+
+.carousel-arrow {
+  background: transparent;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.carousel-arrow:hover {
+  opacity: 0.7;
+}
+
+/* CORRECCIÓN 2: Opiniones en responsive */
+@media (max-width: 768px) {
+  .opinions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .opinions-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .opinion-card {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+/* Añadir indicadores de desplazamiento para tablets */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .opinions-row {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  }
+
+  .opinions-row::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .opinions-row::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+  }
+
+  .opinion-card {
+    scroll-snap-align: start;
+  }
+}
+
+/* Banner 6 - Contact */
+.banner6 {
+  position: relative;
+  padding: 2rem 0;
+  background: linear-gradient(90deg, #000000, #331800);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  height: auto;
+  color: #f5f5f5;
+  width: 100%;
+}
+
+.contact-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.coffee-illustration {
+  flex: 0 0 300px;
+
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.coffee-illustration img {
+  max-width: 450px;
+  height: auto;
+}
+
+.contact-info {
+  flex: 0 0 300px;
+  padding: 1.6rem;
+}
+
+.contact-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .opinions-grid {
+    display: block;
+  }
+
+  .opinions-row {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .opinion-card {
+    scroll-snap-align: start;
+    flex: 0 0 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner5-title,
+  .contact-title {
+    font-size: 2rem;
+  }
+  .contact-item {
+    font-size: 1.1rem;
+  }
+
+  .coffee-illustration,
+  .contact-info {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  width: 50px;
+  height: 50px;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  list-style: none;
+}
+
+.footer-link {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: opacity 0.3s;
+}
+
+.footer-link:hover {
+  opacity: 0.7;
+}
+
+.contact-button {
+  margin-left: 2rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.contact-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+
+  .footer-logo {
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-link {
+    margin: 0.5rem 0;
+  }
+
+  .contact-button {
+    margin: 0;
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
+
+/* Solución para las flechas de certificados en responsive */
+@media (max-width: 768px) {
+  .certificatearrow {
+    padding: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .certificates-carousel .Prev-arrow {
+    left: 5px;
+  }
+
+  .certificates-carousel .Next-arrow {
+    right: 5px;
+  }
+
+  .certificatearrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Solución para el espacio vacío a la izquierda en responsive */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  .container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #container2 {
+    padding: 1rem;
+    margin: 0;
+    width: 100%;
+  }
+
+  .banner5,
+  .banner6,
+  .banner3,
+  .certificates-container,
+  .banner2 {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+}
+
+/* Asegurar que el carrusel de certificados se ajuste correctamente */
+@media (max-width: 768px) {
+  .certificates-carousel {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .carousel-inner {
+    width: 100%;
+  }
+}

@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dani - Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        color: #000;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      #container2 {
+        padding: 1rem 10rem;
+      }
+
+      /* Header and Navigation */
+      header {
+        padding: 20px 0;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        align-items: center;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .logo::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        border-radius: 50%;
+      }
+
+      .logo::after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 15px;
+        background-color: #000;
+        transform: translateX(10px);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #000;
+        font-size: 14px;
+        transition: opacity 0.3s;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      .nav-links a.active {
+        font-weight: 600;
+      }
+
+      .contact-btn {
+        border: 1px solid #000;
+        padding: 5px 15px;
+        border-radius: 4px;
+      }
+
+      /* Banner Section */
+      .banner {
+        position: relative;
+        min-height: 500px;
+        padding: 60px 0 0 0;
+        overflow: hidden;
+      }
+
+      .gradient-bg {
+        position: fixed; /* Change from absolute to fixed to follow across the entire page */
+        width: 1000px;
+        height: 1000px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 165, 0, 0.7) 0%,
+          rgba(255, 99, 71, 0.5) 70%
+        );
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.8;
+        transition: background 0.5s ease, transform 0.3s ease;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .banner-content {
+        max-width: 600px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .banner-title {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+
+      .banner-description {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        max-width: 500px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 10px 25px;
+        border: 1px solid #000;
+        border-radius: 30px;
+        text-decoration: none;
+        color: #000;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      .cta-button:hover {
+        background-color: #000;
+        color: #fff;
+      }
+
+      /* Services Section */
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 0px;
+        padding-top: 0px;
+        border-top: 3px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .service {
+        padding: 40px 0;
+      }
+
+      .service-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .service-description {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* Corner decoration */
+      .corner {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        border-top: 1px solid #000;
+        border-right: 1px solid #000;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .banner-title {
+          font-size: 3rem;
+        }
+
+        .services {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+        #container2 {
+          padding: 1rem 1rem;
+        }
+      }
+
+      /* Typewriter cursor effect */
+      .typewriter-text::after {
+        content: "|";
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /*segundo banner*/
+      .banner2 {
+        background-color: #000;
+        color: #fff;
+        padding: 6rem 15%;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .banner2.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .banner2-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+      }
+
+      .app-icons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .app-icon {
+        width: 100px;
+        height: 100px;
+
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      .app-icon.animate {
+        animation: fadeIn 0.5s forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .icon-image {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .banner2-title {
+          font-size: 1.8rem;
+          padding: 2rem 5%;
+        }
+
+        .app-icon {
+          width: 70px;
+          height: 70px;
+        }
+
+        .icon-image {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .banner2 {
+          padding: 2rem 1rem;
+        }
+
+        .banner2-title {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .app-icons {
+          gap: 1rem;
+        }
+
+        .app-icon {
+          width: 100px;
+          height: 100px;
+        }
+
+        .icon-image {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      /*tercer banner*/
+
+      .banner3 {
+        background-color: #000;
+        color: #fff;
+        padding: 3rem 2rem;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .banner3-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .banner3-carousel-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .banner3-carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .banner3-project {
+        padding: 0 1rem;
+        box-sizing: border-box;
+        min-width: 280px;
+      }
+
+      .banner3-project-number {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      /* CORRECCIÓN 3: Efecto hover en imágenes de proyectos */
+      .banner3-project-image-container {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        background-color: #1a1a1a;
+        transition: all 0.3s ease;
+      }
+
+      .banner3-project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+
+      .ver-mas-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+        cursor: pointer;
+        font-size: 14px;
+        border: 1px solid white;
+        pointer-events: none; /* Para que no interfiera con los clics mientras está oculto */
+        text-decoration: none; /* Para quitar el subrayado de los enlaces */
+        display: inline-block; /* Para que se comporte como un botón */
+        z-index: 10; /* Asegurar que esté por encima de otros elementos */
+      }
+
+      .banner3-project-image-container:hover .banner3-project-image {
+        filter: blur(4px);
+        transform: scale(1.05);
+      }
+
+      .banner3-project-image-container:hover .ver-mas-btn {
+        opacity: 1;
+        pointer-events: auto; /* Habilitar interacción cuando es visible */
+      }
+
+      .ver-mas-btn:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .banner3-project-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .banner3-project-brand {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        text-align: left;
+      }
+
+      .banner3-project-brand h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      .banner3-project-brand p {
+        font-size: 0.9rem;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .banner3-project-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1rem 0 0.5rem;
+      }
+
+      .banner3-project-description {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #aaa;
+        margin: 0;
+        max-height: 80px;
+        overflow: hidden;
+      }
+
+      .banner3-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        padding: 0 1rem;
+      }
+
+      .banner3-nav-button {
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: opacity 0.3s;
+      }
+
+      .banner3-nav-button:hover {
+        opacity: 0.7;
+      }
+
+      .banner3-nav-button:focus {
+        outline: none;
+      }
+
+      @media (max-width: 1024px) {
+        .banner3-project {
+          /* flex: 0 0 33.333%;*/
+        }
+      }
+
+      @media (max-width: 768px) {
+        .banner3-project {
+          /*  flex: 0 0 50%;*/
+        }
+      }
+
+      @media (max-width: 480px) {
+        .banner3-project {
+          /*flex: 0 0 100%;*/
+        }
+
+        .banner3-title {
+          font-size: 2rem;
+        }
+      }
+
+      /*banner 4*/
+
+      .certificates-container {
+        width: 100%;
+        padding: 2rem;
+        background-color: black;
+      }
+
+      .certificates-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .certificates-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .tab-button {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 0.5rem 2rem;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s;
+      }
+
+      .tab-button:after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #fff;
+        transition: width 0.3s;
+      }
+
+      .tab-button.active {
+        font-weight: bold;
+      }
+
+      .tab-button.active:after {
+        width: 100%;
+      }
+
+      .tab-button:not(:last-child) {
+        position: relative;
+      }
+
+      .tab-button:not(:last-child)::before {
+        content: "|";
+        position: absolute;
+        right: 0;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .certificates-carousel {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-bottom: 2rem;
+      }
+
+      .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 20px;
+      }
+
+      .certificate {
+        min-width: calc(33.333% - 14px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .certificate.active {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .certificate img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .carousel-navigation {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      /* CORRECCIÓN 1: Flechas en la sección de certificados */
+      .certificatearrow {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 1rem;
+        pointer-events: auto;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+        /* Posición específica para las flechas de certificados */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+      }
+
+      .certificates-carousel .Prev-arrow {
+        left: 10px;
+      }
+
+      .certificates-carousel .Next-arrow {
+        right: 10px;
+      }
+
+      .certificatearrow:hover {
+        opacity: 1;
+      }
+
+      .certificatearrow svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media (max-width: 992px) {
+        .certificate {
+          min-width: calc(50% - 10px);
+        }
+      }
+
+      @media (max-width: 576px) {
+        .certificate {
+          min-width: 100%;
+        }
+
+        .certificates-title {
+          font-size: 2rem;
+        }
+
+        .tab-button {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+        }
+      } /*banner 5 y 6*/
+      .container {
+        margin: 0;
+        padding: 1rem;
+        max-width: 100%;
+      }
+
+      /* Banner 5 - Opinions */
+      .banner5 {
+        position: relative;
+        padding: 1rem 0;
+        overflow: hidden;
+        background: linear-gradient(90deg, #000000, #331800);
+        background-size: 200% 200%;
+        animation: gradientAnimation 15s ease infinite;
+        color: white;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .banner5-title {
+        font-size: 4rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .opinions-grid {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 1rem;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .opinions-row {
+        display: flex;
+        gap: 1rem;
+        transition: transform 0.5s ease;
+      }
+
+      .opinions-row-1 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .opinions-row-2 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .opinion-card {
+        background-color: rgba(255, 255, 255, 0.06);
+        border-radius: 17px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        min-width: 300px;
+        height: 250px;
+        flex: 1;
+      }
+
+      .opinion-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .opinion-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ccc;
+        margin-right: 1rem;
+        overflow: hidden;
+      }
+
+      .opinion-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .opinion-author {
+        flex: 1;
+      }
+
+      .opinion-name {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .opinion-title {
+        font-size: 0.8rem;
+        color: #ffffff;
+      }
+
+      .opinion-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #ddd;
+        margin-bottom: 1rem;
+        height: 120px;
+        overflow: hidden;
+      }
+
+      .opinion-stars {
+        color: #ffffff;
+        letter-spacing: 2px;
+      }
+
+      .carousel-navigation {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .carousel-arrows {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        z-index: 10;
+      }
+
+      .carousel-arrow {
+        background: transparent;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 0.3s;
+      }
+
+      .carousel-arrow:hover {
+        opacity: 0.7;
+      }
+
+      /* CORRECCIÓN 2: Opiniones en responsive */
+      @media (max-width: 768px) {
+        .opinions-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .opinions-row {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 100%;
+        }
+
+        .opinion-card {
+          width: 100%;
+          min-width: 100%;
+        }
+      }
+
+      /* Añadir indicadores de desplazamiento para tablets */
+      @media (min-width: 769px) and (max-width: 1200px) {
+        .opinions-row {
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        }
+
+        .opinions-row::-webkit-scrollbar {
+          height: 6px;
+        }
+
+        .opinions-row::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 3px;
+        }
+
+        .opinion-card {
+          scroll-snap-align: start;
+        }
+      }
+
+      /* Banner 6 - Contact */
+      .banner6 {
+        position: relative;
+        padding: 2rem 0;
+        background: linear-gradient(90deg, #000000, #331800);
+        background-size: 200% 200%;
+        animation: gradientAnimation 15s ease infinite;
+        height: auto;
+        color: #f5f5f5;
+        width: 100%;
+      }
+
+      .contact-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0;
+        text-decoration: none;
+      }
+
+      .coffee-illustration {
+        flex: 0 0 300px;
+
+        display: flex;
+        max-width: 100%;
+        justify-content: center;
+      }
+
+      .coffee-illustration img {
+        max-width: 450px;
+        height: auto;
+      }
+
+      .contact-info {
+        flex: 0 0 300px;
+        padding: 1.6rem;
+        text-decoration: none;
+      }
+
+      .contact-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+      }
+
+      .contact-item {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .contact-item a {
+        text-decoration: none;
+        color: white;
+      }
+      .contact-item a:hover {
+        color: rgb(179, 179, 179);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1200px) {
+        .opinions-grid {
+          display: block;
+        }
+
+        .opinions-row {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          margin-bottom: 1rem;
+          padding-bottom: 1rem;
+        }
+
+        .opinion-card {
+          scroll-snap-align: start;
+          flex: 0 0 300px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .banner5-title,
+        .contact-title {
+          font-size: 2rem;
+        }
+        .contact-item {
+          font-size: 1.1rem;
+        }
+
+        .coffee-illustration,
+        .contact-info {
+          flex: 0 0 100%;
+          text-align: center;
+        }
+      }
+
+      .content {
+        flex: 1;
+        padding: 2rem;
+      }
+
+      .footer {
+        background-color: #000;
+        color: #fff;
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-logo {
+        width: 50px;
+        height: 50px;
+      }
+
+      .footer-nav {
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .footer-link {
+        margin-left: 2rem;
+        text-decoration: none;
+        color: #fff;
+        font-size: 0.9rem;
+        transition: opacity 0.3s;
+      }
+
+      .footer-link:hover {
+        opacity: 0.7;
+      }
+
+      .contact-button {
+        margin-left: 2rem;
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .contact-button:hover {
+        background-color: #fff;
+        color: #000;
+      }
+
+      /* Mobile styles */
+      @media (max-width: 768px) {
+        .footer {
+          flex-direction: column;
+          padding: 2rem 1rem;
+        }
+
+        .footer-logo {
+          margin-bottom: 1.5rem;
+        }
+
+        .footer-nav {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+          margin: 0.5rem 0;
+        }
+
+        .contact-button {
+          margin: 0;
+          width: 100%;
+          padding: 0.75rem;
+        }
+      }
+
+      /* Solución para las flechas de certificados en responsive */
+      @media (max-width: 768px) {
+        .certificatearrow {
+          padding: 0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 20;
+          background-color: rgba(0, 0, 0, 0.5);
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .certificates-carousel .Prev-arrow {
+          left: 5px;
+        }
+
+        .certificates-carousel .Next-arrow {
+          right: 5px;
+        }
+
+        .certificatearrow svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      /* Solución para el espacio vacío a la izquierda en responsive */
+      @media (max-width: 768px) {
+        body {
+          overflow-x: hidden;
+          width: 100%;
+          position: relative;
+        }
+
+        .container {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        #container2 {
+          padding: 1rem;
+          margin: 0;
+          width: 100%;
+        }
+
+        .banner5,
+        .banner6,
+        .banner3,
+        .certificates-container,
+        .banner2 {
+          width: 100%;
+          max-width: 100%;
+          padding-left: 0;
+          padding-right: 0;
+          box-sizing: border-box;
+          overflow-x: hidden;
+        }
+      }
+
+      /* Asegurar que el carrusel de certificados se ajuste correctamente */
+      @media (max-width: 768px) {
+        .certificates-carousel {
+          width: 100%;
+          padding: 0 10px;
+          box-sizing: border-box;
+        }
+
+        .carousel-inner {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container2">
+      <header>
+        <nav>
+          <div><img class="logo" src="danibrand.png" alt="" /></div>
+          <div class="nav-links">
+            <a href="#" class="active">Inicio</a>
+            <a href="#appBanner2">Programas</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#certificados">Certificados</a>
+            <a href="https://w.app/qmh8w9" class="contact-btn">Contacto</a>
+          </div>
+        </nav>
+      </header>
+
+      <section class="banner">
+        <div class="gradient-bg" id="gradient"></div>
+        <div class="banner-content">
+          <h1 class="banner-title">
+            Hola, soy Dani<br />
+            <span class="typewriter-text" id="typewriter"></span>
+          </h1>
+          <p class="banner-description">
+            Como diseñador con experiencia en marketing, una pasión por la
+            ilustración y conocimientos en programación frontend, tengo la
+            habilidad de fusionar la creatividad y la funcionalidad para crear
+            experiencias digitales cautivadoras.
+          </p>
+          <a href="https://w.app/qmh8w9" class="cta-button">Contáctame</a>
+        </div>
+      </section>
+
+      <section class="services">
+        <div class="service">
+          <h3 class="service-title">Branding</h3>
+          <p class="service-description">
+            Con más de 30 marcas creadas a lo largo de mi carrera con alcance
+            desde Canadá hasta Argentina
+          </p>
+        </div>
+        <div class="service">
+          <h3 class="service-title">Social Media</h3>
+          <p class="service-description">
+            Con experiencia administrando cuentas de diversas categorías: Salud,
+            estética, viajes, Coaching, agente de seguros
+          </p>
+        </div>
+        <div class="service">
+          <h3 class="service-title">Diseño Web</h3>
+          <p class="service-description">
+            Amplio conocimiento y experiencia en diseño UI UX, programación y
+            diseño en plataformas como wordpress
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <div class="banner2" id="appBanner2">
+      <h2 class="banner2-title">We worked with powerful apps</h2>
+      <div class="app-icons" id="appIcons">
+        <!-- Icons will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <!--banner 3-->
+    <div class="banner3" id="proyectos">
+      <h2 class="banner3-title">Proyectos</h2>
+
+      <div class="banner3-carousel-container">
+        <div class="banner3-carousel" id="projectsCarousel">
+          <!-- Projects will be inserted here by JavaScript -->
+        </div>
+      </div>
+
+      <div class="banner3-navigation">
+        <button
+          class="banner3-nav-button banner3-prev"
+          id="prevButton"
+          aria-label="Previous projects"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12H5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 19L5 12L12 5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <button
+          class="banner3-nav-button banner3-next"
+          id="nextButton"
+          aria-label="Next projects"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12H19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 5L19 12L12 19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- banner 4 -->
+    <div class="certificates-container" id="certificados">
+      <h1 class="certificates-title">Certificaciones</h1>
+
+      <div class="certificates-tabs">
+        <button class="tab-button active" data-category="design">Diseño</button>
+        <button class="tab-button" data-category="web">Web</button>
+      </div>
+
+      <div class="certificates-carousel">
+        <div class="carousel-inner" id="carouselInner">
+          <!-- Certificates will be inserted here by JavaScript -->
+        </div>
+
+        <div class="carousel-navigation">
+          <button class="certificatearrow Prev-arrow" id="prevArrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M19 12H5"></path>
+              <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="certificatearrow Next-arrow" id="nextArrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner 5 - Opinions -->
+    <section class="banner5" id="opiniones">
+      <div class="container">
+        <h2 class="banner5-title">Opiniones</h2>
+
+        <div class="opinions-grid">
+          <div class="opinions-row opinions-row-1" id="opinionsRow1">
+            <!-- First row of opinions (3 cards) will be inserted here by JavaScript -->
+          </div>
+
+          <div class="opinions-row opinions-row-2" id="opinionsRow2">
+            <!-- Second row of opinions (4 cards) will be inserted here by JavaScript -->
+          </div>
+
+          <div class="carousel-arrows">
+            <button class="carousel-arrowss prev-arrows" id="prevOpinion">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="carousel-arrow next-arrow" id="nextOpinion">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner 6 - Contact -->
+    <section class="banner6" id="contacto">
+      <div class="contact-container">
+        <div class="coffee-illustration">
+          <img
+            src="caapybaraa.png"
+            alt="Coffee cup illustration"
+            id="coffeeIllustration"
+          />
+        </div>
+
+        <div class="contact-info">
+          <h2 class="contact-title">¡Contáctame!</h2>
+          <div class="contact-item">
+            <a href="https://w.app/qmh8w9">000.123.456.789</a>
+          </div>
+          <div class="contact-item">
+            <a href="Danielacuartin1@gmail.com">Danielacuartin1@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <a href="www.linkedin.com/in/daniela-cuartin-7748b4232"
+              >@Daniela-cuartin-7748b4232</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <img class="footer-logo" src="3danibrand.png" alt="" />
+      </div>
+
+      <nav class="footer-nav">
+        <ul class="footer-links">
+          <li><a href="#appBanner2" class="footer-link">Inicio</a></li>
+          <li><a href="#proyectos" class="footer-link">Programas</a></li>
+          <li><a href="#certificados" class="footer-link">Proyectos</a></li>
+          <li>
+            <a href="https://w.app/qmh8w9" class="footer-link">Certificados</a>
+          </li>
+        </ul>
+
+        <button class="contact-button" id="contactButton">Contacto</button>
+      </nav>
+    </footer>
+
+    <script>
+      // Interactive gradient background that follows the mouse throughout the entire page
+      const gradient = document.getElementById("gradient");
+
+      // Set initial position in the center of the viewport
+      let gradientX = window.innerWidth / 2;
+      let gradientY = window.innerHeight / 2;
+      gradient.style.left = `${gradientX}px`;
+      gradient.style.top = `${gradientY}px`;
+
+      document.addEventListener("mousemove", (e) => {
+        // Get mouse position relative to the viewport
+        gradientX = e.clientX;
+        gradientY = e.clientY;
+
+        // Apply position with smooth transition
+        gradient.style.left = `${gradientX}px`;
+        gradient.style.top = `${gradientY}px`;
+
+        // Change gradient colors based on position within the page
+        const xRatio = gradientX / window.innerWidth;
+        const yRatio = gradientY / window.innerHeight;
+
+        const hue1 = 20 + xRatio * 30; // Orange range
+        const hue2 = 0 + yRatio * 40; // Red range
+
+        gradient.style.background = `radial-gradient(
+                                                               circle,
+                                                               hsla(${hue1}, 100%, 70%, 0.7) 0%,
+                                                               hsla(${hue2}, 100%, 65%, 0.5) 70%
+                                                           )`;
+      });
+
+      // Add window resize event to ensure gradient stays properly positioned
+      window.addEventListener("resize", () => {
+        // Update gradient position on window resize
+        gradientX = window.innerWidth / 2;
+        gradientY = window.innerHeight / 2;
+        gradient.style.left = `${gradientX}px`;
+        gradient.style.top = `${gradientY}px`;
+      });
+
+      // Typewriter effect
+      const typewriterElement = document.getElementById("typewriter");
+      const phrases = ["Graphic Designer", "Web Developer"];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+
+      function typeWriter() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+          // Deleting text
+          typewriterElement.textContent = currentPhrase.substring(
+            0,
+            charIndex - 1
+          );
+          charIndex--;
+          typingSpeed = 50; // Faster when deleting
+        } else {
+          // Typing text
+          typewriterElement.textContent = currentPhrase.substring(
+            0,
+            charIndex + 1
+          );
+          charIndex++;
+          typingSpeed = 100; // Normal typing speed
+        }
+
+        // If we've finished typing the current phrase
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          // Pause at the end of typing
+          isDeleting = true;
+          typingSpeed = 1500; // Wait before deleting
+        }
+        // If we've finished deleting the current phrase
+        else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          // Move to next phrase
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          // Pause before typing next phrase
+          typingSpeed = 500;
+        }
+
+        setTimeout(typeWriter, typingSpeed);
+      }
+
+      // Start the typewriter effect when the page loads
+      window.onload = typeWriter;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // App data
+        const apps = [
+          // First row
+          {
+            id: 1,
+            name: "Illustrator",
+            icon: "./logos programas/1.png?height=100&width=100",
+          },
+          {
+            id: 2,
+            name: "Photoshop",
+            icon: "./logos programas/2.png?height=100&width=100",
+          },
+          {
+            id: 3,
+            name: "InDesign",
+            icon: "./logos programas/3.png?height=100&width=100",
+          },
+          {
+            id: 4,
+            name: "After Effects",
+            icon: "./logos programas/4.png?height=100&width=100",
+          },
+          {
+            id: 5,
+            name: "Lightroom",
+            icon: "./logos programas/5.png?height=100&width=100",
+          },
+          {
+            id: 6,
+            name: "Premiere Pro",
+            icon: "./logos programas/6.png?height=100&width=100",
+          },
+          {
+            id: 7,
+            name: "Express",
+            icon: "./logos programas/7.png?height=100&width=100",
+          },
+          {
+            id: 8,
+            name: "Canva",
+            icon: "./logos programas/7.png?height=100&width=100",
+          },
+          // Second row
+          {
+            id: 9,
+            name: "HTML5",
+            icon: "./logos programas/8.png?height=100&width=100",
+          },
+          {
+            id: 10,
+            name: "CSS3",
+            icon: "./logos programas/9.png?height=100&width=100",
+          },
+          {
+            id: 11,
+            name: "JavaScript",
+            icon: "./logos programas/11.png?height=100&width=100",
+          },
+          {
+            id: 12,
+            name: "WordPress",
+            icon: "./logos programas/12.png?height=100&width=100",
+          },
+          {
+            id: 13,
+            name: "Figma",
+            icon: "./logos programas/13.png?height=100&width=100",
+          },
+          {
+            id: 14,
+            name: "Blender",
+            icon: "./logos programas/14.png?height=200&width=200",
+          },
+        ];
+
+        const appIconsContainer = document.getElementById("appIcons");
+        const banner = document.getElementById("appBanner2");
+
+        // Create app icons
+        apps.forEach((app, index) => {
+          const iconDiv = document.createElement("div");
+          iconDiv.className = "app-icon";
+          iconDiv.dataset.index = index;
+
+          const img = document.createElement("img");
+          img.src = app.icon;
+          img.alt = app.name;
+          img.className = "icon-image";
+
+          iconDiv.appendChild(img);
+          appIconsContainer.appendChild(iconDiv);
+        });
+
+        // Show banner with animation
+        setTimeout(() => {
+          banner.classList.add("visible");
+
+          // Animate icons with delay
+          const icons = document.querySelectorAll(".app-icon");
+          icons.forEach((icon, index) => {
+            setTimeout(() => {
+              icon.classList.add("animate");
+            }, 300 + index * 100); // 300ms initial delay, then 100ms between each icon
+          });
+        }, 500);
+      });
+
+      //banner 3
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Project data
+        const projects = [
+          {
+            id: 1,
+            number: "BRANDING",
+            title: "Zenelif – Consultora integral inteligente",
+            image: "zenelif.png?height=280&width=280",
+            description:
+              "Diseñé una identidad de marca que refleja estrategia, innovación y confianza para una consultora que transforma negocios desde un enfoque inteligente y humano.",
+            link: "https://www.behance.net/gallery/214479733/Zenelif-Consultora", // Añadir link para cada proyecto
+          },
+          {
+            id: 2,
+            number: "BRANDING",
+            title: "Mere – Sul Body Holistic",
+            image: "mere.png?height=280&width=280",
+            description:
+              "Creamos una identidad que transmite bienestar y armonía para un spa que honra el cuerpo y el alma a través de experiencias sensoriales profundas.",
+            hasLogo: true,
+            link: "https://www.behance.net/gallery/220935959/MERE-SOUL-BODY-HOLISTIC", // Añadir link para cada proyecto
+          },
+          {
+            id: 3,
+            number: "BRANDING",
+            title: "Be Vous – Expertos en el autocuidado",
+            image: "bevous.png?height=280&width=280",
+            description:
+              "Desarrollé el branding y diseño de etiquetas para una línea de belleza natural enfocada en el amor propio, la piel consciente y el cuidado auténtico.",
+            link: "https://www.behance.net/gallery/209960085/Be-vous", // Añadir link para cada proyecto
+          },
+          {
+            id: 4,
+            number: "WEB SITE",
+            title: "MB Capital – Somos tu economía molecular",
+            image: "mbcapital.png?height=280&width=280",
+            description:
+              "Diseñé el UI/UX en Figma para esta wallet cripto, enfocándome en una experiencia visual clara, moderna y segura para los usuarios del ecosistema digital.",
+            link: "https://www.figma.com/design/HQNxFDuC3Pwib1KnemaGxe/MB-CAPITAL?node-id=0-1&t=GxSS07i7wp0W4sOt-1", // Añadir link para cada proyecto
+          },
+          {
+            id: 5,
+            number: "WEB SITE",
+            title: "Delta Ridge – Constructora de confianza",
+            image: "20.png?height=280&width=280",
+            description:
+              "Diseñé su sitio web enfocado en transmitir seguridad, profesionalismo y un estilo limpio que refleja el carácter sólido de esta desarrolladora.",
+            link: "https://danielacuartin1.wixstudio.com/my-site-6", // Añadir link para cada proyecto
+          },
+          {
+            id: 6,
+            number: "WEB SITE",
+            title: "Octagenox – Vitalidad sin límites",
+            image: "18.png?height=280&width=280",
+            description:
+              "Trabajé en el diseño UI/UX para su web, transmitiendo una imagen moderna y fresca para una marca de colágeno que impulsa energía y juventud.",
+            link: "https://www.figma.com/design/IhxTq6RsTG41NoEJW5YX2x/OCTAGENOX--2?node-id=0-1&t=b1vKmylPW6aw0hKB-1", // Añadir link para cada proyecto
+          },
+          {
+            id: 7,
+            number: "WEB SITE",
+            title: "AEI Travel and Culture – Estudios sin fronteras",
+            image: "19.png?height=280&width=280",
+            description:
+              "Desarrollé su página web en WordPress con Elementor, facilitando una navegación clara y emocional para jóvenes que sueñan con estudiar en el extranjero",
+            link: "https://aeitravelandculture.com/", // Añadir link para cada proyecto
+          },
+          {
+            id: 8,
+            number: "WEB SITE",
+            title: "Human Before Brand – Conectamos desde la empatía",
+            image: "21.png?height=280&width=280",
+            description:
+              "Diseñé su página web desde cero con HTML, CSS y JavaScript, construyendo una plataforma humana que refleja los valores y servicios de la agencia.",
+            link: "https://ishumanbeforebrand.com/", // Añadir link para cada proyecto
+          },
+          {
+            id: 9,
+            number: "BRANDING",
+            title: "Skins – Medical Spa",
+            image: "22.png?height=280&width=280",
+            description:
+              "Creé el branding de una marca de medicina estética con enfoque moderno, profesional y limpio, resaltando la belleza desde la ciencia y la confianza.",
+            link: "https://drive.google.com/file/d/1ZjPAj_yJ6dTQiLvQRvGjrlP-mnBBuSXn/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 10,
+            number: "BRANDING",
+            title: "Over Living – Consultoria y retiro",
+            image: "23.png?height=280&width=280",
+            description:
+              "Desarrollé el branding de una consultora enfocada en el retiro, con una identidad cálida y humana que acompaña a las personas en una nueva etapa.",
+            link: "https://drive.google.com/file/d/1bQCymn2qU1hekhBiSvNFnRcLs21S_eB_/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 11,
+            number: "SOCIAL MEDIA",
+            title: "Estefanía Coral – Historias reales que inspiran",
+            image: "24.png?height=280&width=280",
+            description:
+              "Diseñé la estrategia de redes sociales para esta marca personal que visibiliza el esfuerzo, los retos y la inspiración de migrar y crecer en Canadá.",
+            link: "https://drive.google.com/file/d/1LxpPZbTPGF1lrYEFzVGWgN_B0kjN9tSj/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 12,
+            number: "SOCIAL MEDIA",
+            title: "Desarrolladora 922 – Construimos tu hogar",
+            image: "25.png?height=280&width=280",
+            description:
+              "Llevé sus redes sociales, generando contenido que transmite cercanía y profesionalismo para conectar con familias que buscan su casa ideal.",
+            link: "https://drive.google.com/file/d/1UdmOn_4qvJbWnIGJB3AVOxGBtzmz6UfP/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 13,
+            number: "SOCIAL MEDIA",
+            title: "Tawil – Viajes que se viven",
+            image: "26.png?height=280&width=280",
+            description:
+              "Trabajé su estrategia en redes sociales, generando contenido visualmente atractivo que invita a descubrir el mundo con una empresa cercana y accesible.",
+            link: "https://drive.google.com/file/d/1773TmXwcmcBNB_eprJuZuQ6RTRmS_5wH/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 14,
+            number: "PACKAGING",
+            title: "Ardentía – Mezcal mexicano con carácter",
+            image: "27.png?height=280&width=280",
+            description:
+              "Diseñé el packaging de esta marca de mezcal con un enfoque elegante y auténtico, resaltando la tradición y la fuerza del producto artesanal.",
+            link: "https://drive.google.com/file/d/1H0EKXoSLl7CaJ751MtBffvZu4z8JDPdg/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 15,
+            number: "BRANDING",
+            title: "Caramour – Dulzura que enamora",
+            image: "28.png?height=280&width=280",
+            description:
+              "Desarrollé todo el branding de una repostería que mezcla ternura, sabor y diseño, evocando momentos dulces que se disfrutan desde el corazón.",
+            link: "https://drive.google.com/file/d/18f-oOmtFmSpcw_mIA2gQuL4sVNSKTJFT/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 16,
+            number: "PACKAGING",
+            title: "Dose Of – Energía con propósito",
+            image: "29.png?height=280&width=280",
+            description:
+              "Diseñé el packaging para esta marca de bebidas con una identidad vibrante, moderna y dinámica que comunica vitalidad y claridad.",
+            link: "https://drive.google.com/file/d/1u5pR_sX1pArJI1J5P_g8sqo7s9x76X1i/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 16,
+            number: "BRANDING",
+            title: "Oratho – La voz que transforma",
+            image: "30.png?height=280&width=280",
+            description:
+              "Creé el branding completo para esta escuela de oratoria, con una imagen poderosa, segura y elegante que inspira a hablar con impacto.",
+            link: "https://drive.google.com/file/d/12SO577q6gSdNSGVAzxhQsEW_8UXBSKk9/view?usp=sharing", // Añadir link para cada proyecto
+          },
+          {
+            id: 16,
+            number: "BRANDING",
+            title: "MB Capital – Marca que evoluciona",
+            image: "31.png?height=280&width=280",
+            description:
+              "Además del diseño UI/UX, desarrollé todo el branding de sus marcas y submarcas, logrando coherencia visual, solidez e identidad a largo plazo.",
+            link: "https://drive.google.com/file/d/12uEhbX4OTnFU5Lxj7dNzocxZhkjBC_WV/view?usp=sharing", // Añadir link para cada proyecto
+          },
+
+          {
+            id: 16,
+            number: "SOCIAL MEDIA",
+            title: "Altavita Santuario – Un lugar para renacer",
+            image: "33.png?height=280&width=280",
+            description:
+              "Realicé la estrategia de social media de este residencial en Riviera Nayarit, destacando su esencia serena, natural y llena de armonía.",
+            link: "https://drive.google.com/file/d/12uEhbX4OTnFU5Lxj7dNzocxZhkjBC_WV/view?usp=sharing", // Añadir link para cada proyecto
+          },
+        ];
+
+        const carousel = document.getElementById("projectsCarousel");
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+
+        let currentIndex = 0;
+        const projectsPerView = getProjectsPerView();
+        const totalSlides = Math.ceil(projects.length / projectsPerView);
+        let isAnimating = false;
+
+        // Determine how many projects to show based on screen width
+        function getProjectsPerView() {
+          if (window.innerWidth <= 480) return 1;
+          if (window.innerWidth <= 768) return 2;
+          if (window.innerWidth <= 1024) return 3;
+          return 4;
+        }
+
+        // Create project elements
+        function renderProjects() {
+          carousel.innerHTML = "";
+          carousel.style.width = `${totalSlides * 100}%`;
+
+          projects.forEach((project) => {
+            const projectElement = document.createElement("div");
+            projectElement.className = "banner3-project";
+
+            let projectContent = `
+                                                          <div class="banner3-project-number">${project.number}</div>
+                                                          <div class="banner3-project-image-container">
+                                                            <img src="${project.image}" alt="${project.title}" class="banner3-project-image">
+                                                            <a href="${project.link}" class="ver-mas-btn" target="_blank" rel="noopener noreferrer">Ver más</a>
+                                                        `;
+
+            if (project.hasLogo) {
+              projectContent += `
+                                                            <div class="banner3-project-logo">
+
+                                                            </div>
+                                                          `;
+            }
+
+            if (project.brand) {
+              projectContent += `
+                                                            <div class="banner3-project-brand">
+                                                              <h3>${
+                                                                project.brand
+                                                              }</h3>
+                                                              <p>${
+                                                                project.brandSubtitle ||
+                                                                "Brand"
+                                                              } <span>${
+                project.year
+              }</span></p>
+                                                            </div>
+                                                          `;
+            }
+
+            projectContent += `
+                                                          </div>
+                                                          <h3 class="banner3-project-title">${project.title}</h3>
+                                                          <p class="banner3-project-description">${project.description}</p>
+                                                        `;
+
+            projectElement.innerHTML = projectContent;
+            carousel.appendChild(projectElement);
+          });
+
+          updateCarouselPosition();
+        }
+
+        // Update carousel position
+        function updateCarouselPosition() {
+          carousel.style.transform = `translateX(-${
+            (currentIndex * 100) / totalSlides
+          }%)`;
+        }
+
+        // Next slide
+        function nextSlide() {
+          if (isAnimating) return;
+
+          isAnimating = true;
+          currentIndex = (currentIndex + 1) % totalSlides;
+          updateCarouselPosition();
+
+          setTimeout(() => {
+            isAnimating = false;
+          }, 500);
+        }
+
+        // Previous slide
+        function prevSlide() {
+          if (isAnimating) return;
+
+          isAnimating = true;
+          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+          updateCarouselPosition();
+
+          setTimeout(() => {
+            isAnimating = false;
+          }, 500);
+        }
+
+        // Event listeners
+        nextButton.addEventListener("click", nextSlide);
+        prevButton.addEventListener("click", prevSlide);
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+          const newProjectsPerView = getProjectsPerView();
+          if (newProjectsPerView !== projectsPerView) {
+            // Recalculate and re-render if the number of visible projects changes
+            renderProjects();
+          }
+        });
+
+        // Initial render
+        renderProjects();
+
+        // Monitorear clics en los enlaces "Ver más" para verificar que funcionan
+        document.addEventListener("click", (e) => {
+          if (e.target.classList.contains("ver-mas-btn")) {
+            console.log(`Clic en enlace: ${e.target.getAttribute("href")}`);
+            // No prevenir el comportamiento predeterminado para permitir la navegación
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Añadir al inicio del DOMContentLoaded para certificados
+        document.body.style.margin = "0";
+        document.body.style.padding = "0";
+        document.body.style.overflowX = "hidden";
+        // Certificate data
+        const certificates = [
+          // Design certificates
+          {
+            id: 1,
+            title: "Fundamentos de Diseño de Interfaces UX/UI",
+            image: "./1diplomas/1.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 2,
+            title: "Diseño para Redes Sociales",
+            image: "./1diplomas/2.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 3,
+            title: "Diseño de Logotipos",
+            image: "./1diplomas/3.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 4,
+            title: "Diseño Editorial",
+            image: "./1diplomas/4.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 5,
+            title: "Adobe Photoshop Avanzado",
+            image: "./1diplomas/5.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 1,
+            title: "Fundamentos de Diseño de Interfaces UX/UI",
+            image: "./1diplomas/6.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 2,
+            title: "Diseño para Redes Sociales",
+            image: "./1diplomas/7.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 3,
+            title: "Diseño de Logotipos",
+            image: "./1diplomas/8.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 4,
+            title: "Diseño Editorial",
+            image: "./1diplomas/9.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 5,
+            title: "Adobe Photoshop Avanzado",
+            image: "./1diplomas/10.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 3,
+            title: "Diseño de Logotipos",
+            image: "./1diplomas/11.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 4,
+            title: "Diseño Editorial",
+            image: "./1diplomas/12.png?height=200&width=300",
+            category: "design",
+          },
+          {
+            id: 5,
+            title: "Adobe Photoshop Avanzado",
+            image: "./1diplomas/13.png?height=200&width=300",
+            category: "web",
+          },
+          // Web certificates
+          {
+            id: 6,
+            title: "Programación Básica",
+            image: "./1diplomas/14.png?height=200&width=300",
+            category: "web",
+          },
+          {
+            id: 7,
+            title: "Desarrollo Frontend con React",
+            image: "./1diplomas/15.png?height=200&width=300",
+            category: "web",
+          },
+          {
+            id: 8,
+            title: "JavaScript Profesional",
+            image: "./1diplomas/16.png?height=200&width=300",
+            category: "web",
+          },
+          {
+            id: 9,
+            title: "Node.js Básico",
+            image: "./1diplomas/17.png?height=200&width=300",
+            category: "web",
+          },
+          {
+            id: 10,
+            title: "Responsive Design",
+            image: "./diploma1.jpg?height=200&width=300",
+            category: "web",
+          },
+        ];
+
+        // DOM elements
+        const carouselInner = document.getElementById("carouselInner");
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const prevArrow = document.getElementById("prevArrow");
+        const nextArrow = document.getElementById("nextArrow");
+
+        let currentIndex = 0;
+        let currentCategory = "design";
+        let visibleCertificates = [];
+
+        // Filter certificates by category and render them
+        function filterAndRenderCertificates(category) {
+          currentCategory = category;
+          visibleCertificates = certificates.filter(
+            (cert) => cert.category === category
+          );
+
+          carouselInner.innerHTML = "";
+
+          visibleCertificates.forEach((cert, index) => {
+            const certificateElement = document.createElement("div");
+            certificateElement.className = `certificate ${
+              index === 0 ? "active" : ""
+            }`;
+            certificateElement.innerHTML = `<img src="${cert.image}" alt="${cert.title}">`;
+
+            carouselInner.appendChild(certificateElement);
+          });
+
+          // Reset carousel
+          currentIndex = 0;
+          updateCarouselPosition();
+        }
+
+        // Update carousel position
+        function updateCarouselPosition() {
+          const certificateWidth =
+            carouselInner.querySelector(".certificate").offsetWidth;
+          const gap = 20; // Same as in CSS
+
+          const translateValue = -(currentIndex * (certificateWidth + gap));
+          carouselInner.style.transform = `translateX(${translateValue}px)`;
+
+          // Update active certificate
+          const certificates = carouselInner.querySelectorAll(".certificate");
+          certificates.forEach((cert, index) => {
+            if (index === currentIndex) {
+              cert.classList.add("active");
+            } else {
+              cert.classList.remove("active");
+            }
+          });
+
+          // Actualizar visibilidad de flechas
+          if (currentIndex === 0) {
+            prevArrow.style.opacity = "0.3";
+            prevArrow.style.pointerEvents = "none";
+          } else {
+            prevArrow.style.opacity = "1";
+            prevArrow.style.pointerEvents = "auto";
+          }
+
+          if (currentIndex >= visibleCertificates.length - 1) {
+            nextArrow.style.opacity = "0.3";
+            nextArrow.style.pointerEvents = "none";
+          } else {
+            nextArrow.style.opacity = "1";
+            nextArrow.style.pointerEvents = "auto";
+          }
+        }
+
+        // Event listeners for tab buttons
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const category = this.dataset.category;
+            filterAndRenderCertificates(category);
+          });
+        });
+
+        // Event listeners for navigation arrows
+        prevArrow.addEventListener("click", function () {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarouselPosition();
+          }
+        });
+
+        nextArrow.addEventListener("click", function () {
+          if (currentIndex < visibleCertificates.length - 1) {
+            currentIndex++;
+            updateCarouselPosition();
+          }
+        });
+
+        // Handle window resize
+        window.addEventListener(
+          "resize",
+          debounce(function () {
+            updateCarouselPosition();
+          }, 250)
+        );
+
+        // Debounce function to limit resize events
+        function debounce(func, wait) {
+          let timeout;
+          return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+          };
+        }
+
+        // Initial render
+        filterAndRenderCertificates("design");
+      });
+
+      //banner 5 y 6
+      document.addEventListener("DOMContentLoaded", function () {
+        // Opinion data
+        const opinions = [
+          // First row (3 opinions)
+          {
+            id: 1,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 1,
+          },
+          {
+            id: 2,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 1,
+          },
+          {
+            id: 3,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 1,
+          },
+
+          // Second row (4 opinions)
+          {
+            id: 4,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 2,
+          },
+          {
+            id: 5,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 2,
+          },
+          {
+            id: 6,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 2,
+          },
+          {
+            id: 7,
+            name: "Persona #1",
+            title: "CEO de empresa",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
+            stars: 5,
+            avatar: "placeholder.svg?height=40&width=40",
+            row: 2,
+          },
+        ];
+
+        // DOM elements
+        const opinionsRow1 = document.getElementById("opinionsRow1");
+        const opinionsRow2 = document.getElementById("opinionsRow2");
+        const prevOpinionBtn = document.getElementById("prevOpinion");
+        const nextOpinionBtn = document.getElementById("nextOpinion");
+        const coffeeIllustration =
+          document.getElementById("coffeeIllustration");
+
+        // Set coffee illustration
+        coffeeIllustration.src = "./caapybaraa.png";
+
+        let currentIndex = 0;
+        let isAnimating = false;
+
+        // Render opinion cards
+        function renderOpinions() {
+          // Clear existing opinions
+          opinionsRow1.innerHTML = "";
+          opinionsRow2.innerHTML = "";
+
+          // Filter opinions by row
+          const row1Opinions = opinions.filter((opinion) => opinion.row === 1);
+          const row2Opinions = opinions.filter((opinion) => opinion.row === 2);
+
+          // Render first row (3 opinions)
+          row1Opinions.forEach((opinion) => {
+            const opinionCard = createOpinionCard(opinion);
+            opinionsRow1.appendChild(opinionCard);
+          });
+
+          // Render second row (4 opinions)
+          row2Opinions.forEach((opinion) => {
+            const opinionCard = createOpinionCard(opinion);
+            opinionsRow2.appendChild(opinionCard);
+          });
+        }
+
+        // Create opinion card element
+        function createOpinionCard(opinion) {
+          const opinionCard = document.createElement("div");
+          opinionCard.className = "opinion-card";
+
+          const starsHTML =
+            "★".repeat(opinion.stars) + "☆".repeat(5 - opinion.stars);
+
+          opinionCard.innerHTML = `
+                                                         <div class="opinion-header">
+                                                           <div class="opinion-avatar">
+                                                             <img src="${opinion.avatar}" alt="${opinion.name}">
+                                                           </div>
+                                                           <div class="opinion-author">
+                                                             <div class="opinion-name">${opinion.name}</div>
+                                                             <div class="opinion-title">${opinion.title}</div>
+                                                           </div>
+                                                         </div>
+                                                         <div class="opinion-text">${opinion.text}</div>
+                                                         <div class="opinion-stars">${starsHTML}</div>
+                                                       `;
+
+          return opinionCard;
+        }
+
+        // Carousel functionality for mobile view
+        function setupMobileCarousel() {
+          if (window.innerWidth <= 1200) {
+            // Add touch scrolling for mobile
+            const rows = document.querySelectorAll(".opinions-row");
+            rows.forEach((row) => {
+              row.addEventListener("scroll", function () {
+                // You can add scroll indicators here if needed
+              });
+            });
+          }
+        }
+
+        // Next slide animation (for visual effect only in this layout)
+        function nextSlide() {
+          if (isAnimating) return;
+
+          isAnimating = true;
+
+          // Add a subtle animation effect
+          const cards = document.querySelectorAll(".opinion-card");
+          cards.forEach((card) => {
+            card.style.transition = "transform 0.3s ease";
+            card.style.transform = "scale(0.95)";
+
+            setTimeout(() => {
+              card.style.transform = "scale(1)";
+            }, 300);
+          });
+
+          setTimeout(() => {
+            isAnimating = false;
+          }, 600);
+        }
+
+        // Previous slide animation (for visual effect only in this layout)
+        function prevSlide() {
+          if (isAnimating) return;
+
+          isAnimating = true;
+
+          // Add a subtle animation effect
+          const cards = document.querySelectorAll(".opinion-card");
+          cards.forEach((card) => {
+            card.style.transition = "transform 0.3s ease";
+            card.style.transform = "scale(0.95)";
+
+            setTimeout(() => {
+              card.style.transform = "scale(1)";
+            }, 300);
+          });
+
+          setTimeout(() => {
+            isAnimating = false;
+          }, 600);
+        }
+
+        // Event listeners
+        prevOpinionBtn.addEventListener("click", prevSlide);
+        nextOpinionBtn.addEventListener("click", nextSlide);
+
+        // Handle window resize
+        window.addEventListener(
+          "resize",
+          debounce(function () {
+            setupMobileCarousel();
+          }, 250)
+        );
+
+        // Debounce function to limit resize events
+        function debounce(func, wait) {
+          let timeout;
+          return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+          };
+        }
+
+        // Gradient animation
+        function animateGradient() {
+          const banner5 = document.querySelector(".banner5");
+          const banner6 = document.querySelector(".banner6");
+
+          let hue = 0;
+
+          setInterval(() => {
+            hue = (hue + 1) % 360;
+            const color1 = "#000000";
+            const color2 = `hsl(${hue}, 100%, 20%)`;
+
+            banner5.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
+            banner6.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
+          }, 100);
+        }
+
+        // Initial render
+        renderOpinions();
+        setupMobileCarousel();
+        animateGradient();
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactButton = document.getElementById("contactButton");
+
+        contactButton.addEventListener("click", function () {
+          // You can replace this with your desired contact action
+          // For example, scroll to contact section, open modal, or navigate to contact page
+          alert("Contact action triggered!");
+
+          // Example: Scroll to contact section
+          // document.querySelector('#contact-section').scrollIntoView({ behavior: 'smooth' });
+
+          // Example: Navigate to contact page
+          // window.location.href = '/contact';
+        });
+
+        // Optional: Add smooth scroll for footer links
+        const footerLinks = document.querySelectorAll(".footer-link");
+
+        footerLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            // If the link has a hash, use smooth scroll
+            const href = this.getAttribute("href");
+            if (href.startsWith("#") && href.length > 1) {
+              e.preventDefault();
+              const targetId = href.substring(1);
+              const targetElement = document.getElementById(targetId);
+
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: "smooth" });
+              }
+            }
+          });
+        });
+      });
+
+      // Asegurar que las flechas sean visibles y funcionales en todos los tamaños de pantalla
+      window.addEventListener("resize", function () {
+        // Recalcular posición del carrusel
+        if (typeof updateCarouselPosition === "function") {
+          updateCarouselPosition();
+        }
+
+        // Asegurar que las flechas estén visibles
+        const prevArrow = document.getElementById("prevArrow");
+        const nextArrow = document.getElementById("nextArrow");
+        if (prevArrow && nextArrow) {
+          prevArrow.style.display = "flex";
+          nextArrow.style.display = "flex";
+        }
+      });
+    </script>
+  </body>
+</html>

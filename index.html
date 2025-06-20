@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dani - Portfolio</title>
 
-    <link rel="stylesheet" href="styles.css" />
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: "Inter", sans-serif;
+      }
+
+      /* Smooth scrolling para toda la página */
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -34,20 +38,19 @@
         padding: 20px 0;
         border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         position: relative;
+        /* Agregar ID para el scroll to top */
+        scroll-margin-top: 20px;
       }
 
       nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        align-items: center;
       }
 
       .logo {
         width: 40px;
         height: 40px;
-
         display: flex;
         align-items: center;
         justify-content: center;
@@ -99,6 +102,66 @@
         border-radius: 4px;
       }
 
+      /* Botón Scroll to Top con Glassmorphismo */
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-to-top:hover {
+        background: rgba(255, 255, 255, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .scroll-to-top svg {
+        width: 24px;
+        height: 24px;
+        color: #333;
+        transition: transform 0.3s ease;
+      }
+
+      .scroll-to-top:hover svg {
+        transform: translateY(-2px);
+      }
+
+      /* Responsive para el botón */
+      @media (max-width: 768px) {
+        .scroll-to-top {
+          bottom: 20px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+        }
+
+        .scroll-to-top svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
       /* Banner Section */
       .banner {
         position: relative;
@@ -108,7 +171,7 @@
       }
 
       .gradient-bg {
-        position: fixed; /* Change from absolute to fixed to follow across the entire page */
+        position: fixed;
         width: 1000px;
         height: 1000px;
         background: radial-gradient(
@@ -242,6 +305,9 @@
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.8s ease, transform 0.8s ease;
+        overflow: hidden;
+        /* Agregar scroll-margin para mejor navegación */
+        scroll-margin-top: 80px;
       }
 
       .banner2.visible {
@@ -255,44 +321,41 @@
         margin-bottom: 2.5rem;
       }
 
+      /* NUEVO: Contenedor para el scroll horizontal continuo */
+      .app-icons-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
       .app-icons {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 1.5rem;
+        animation: scrollLogos 30s linear infinite;
+        width: max-content;
+      }
+
+      @keyframes scrollLogos {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
       }
 
       .app-icon {
         width: 80px;
         height: 80px;
-
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        opacity: 0;
-        transform: scale(0.8);
-      }
-
-      .app-icon.animate {
-        animation: fadeIn 0.5s forwards;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.8);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
       }
 
       .icon-image {
         width: 80px;
         height: 80px;
-
         object-fit: contain;
       }
 
@@ -339,8 +402,7 @@
         }
       }
 
-      /*tercer banner*/
-
+      /*tercer banner - MODIFICADO: Grid de proyectos en lugar de carrusel*/
       .banner3 {
         background-color: #000;
         color: #fff;
@@ -349,6 +411,8 @@
         margin: 0 auto;
         overflow: hidden;
         position: relative;
+        /* Agregar scroll-margin para mejor navegación */
+        scroll-margin-top: 80px;
       }
 
       .banner3-title {
@@ -358,21 +422,20 @@
         margin-bottom: 3rem;
       }
 
-      .banner3-carousel-container {
+      /* NUEVO: Grid de proyectos */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
         width: 100%;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .banner3-carousel {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
       }
 
       .banner3-project {
-        padding: 0 1rem;
-        box-sizing: border-box;
-        min-width: 280px;
+        width: 100%;
+        margin-bottom: 2rem;
       }
 
       .banner3-project-number {
@@ -381,11 +444,10 @@
         margin-bottom: 0.5rem;
       }
 
-      /* CORRECCIÓN 3: Efecto hover en imágenes de proyectos */
       .banner3-project-image-container {
         position: relative;
         width: 100%;
-        height: 280px;
+        aspect-ratio: 1/1;
         margin-bottom: 1rem;
         overflow: hidden;
         background-color: #1a1a1a;
@@ -413,10 +475,10 @@
         cursor: pointer;
         font-size: 14px;
         border: 1px solid white;
-        pointer-events: none; /* Para que no interfiera con los clics mientras está oculto */
-        text-decoration: none; /* Para quitar el subrayado de los enlaces */
-        display: inline-block; /* Para que se comporte como un botón */
-        z-index: 10; /* Asegurar que esté por encima de otros elementos */
+        pointer-events: none;
+        text-decoration: none;
+        display: inline-block;
+        z-index: 10;
       }
 
       .banner3-project-image-container:hover .banner3-project-image {
@@ -426,7 +488,7 @@
 
       .banner3-project-image-container:hover .ver-mas-btn {
         opacity: 1;
-        pointer-events: auto; /* Habilitar interacción cuando es visible */
+        pointer-events: auto;
       }
 
       .ver-mas-btn:hover {
@@ -477,45 +539,22 @@
         overflow: hidden;
       }
 
-      .banner3-navigation {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2rem;
-        padding: 0 1rem;
-      }
-
-      .banner3-nav-button {
-        background: transparent;
-        border: none;
-        color: white;
-        cursor: pointer;
-        padding: 0.5rem;
-        transition: opacity 0.3s;
-      }
-
-      .banner3-nav-button:hover {
-        opacity: 0.7;
-      }
-
-      .banner3-nav-button:focus {
-        outline: none;
-      }
-
+      /* Responsive para grid de proyectos */
       @media (max-width: 1024px) {
-        .banner3-project {
-          /* flex: 0 0 33.333%;*/
+        .projects-grid {
+          grid-template-columns: repeat(3, 1fr);
         }
       }
 
       @media (max-width: 768px) {
-        .banner3-project {
-          /*  flex: 0 0 50%;*/
+        .projects-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
       @media (max-width: 480px) {
-        .banner3-project {
-          /*flex: 0 0 100%;*/
+        .projects-grid {
+          grid-template-columns: 1fr;
         }
 
         .banner3-title {
@@ -524,11 +563,12 @@
       }
 
       /*banner 4*/
-
       .certificates-container {
         width: 100%;
         padding: 2rem;
         background-color: black;
+        /* Agregar scroll-margin para mejor navegación */
+        scroll-margin-top: 80px;
       }
 
       .certificates-title {
@@ -631,7 +671,6 @@
         pointer-events: none;
       }
 
-      /* CORRECCIÓN 1: Flechas en la sección de certificados */
       .certificatearrow {
         background: transparent;
         border: none;
@@ -642,7 +681,6 @@
         pointer-events: auto;
         opacity: 0.7;
         transition: opacity 0.3s;
-        /* Posición específica para las flechas de certificados */
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -692,197 +730,6 @@
         max-width: 100%;
       }
 
-      /* Banner 5 - Opinions */
-      .banner5 {
-        position: relative;
-        padding: 1rem 0;
-        overflow: hidden;
-        background: linear-gradient(90deg, #000000, #331800);
-        background-size: 200% 200%;
-        animation: gradientAnimation 15s ease infinite;
-        color: white;
-      }
-
-      @keyframes gradientAnimation {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      .banner5-title {
-        font-size: 4rem;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-
-      .opinions-grid {
-        display: grid;
-        grid-template-rows: auto auto;
-        gap: 1rem;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .opinions-row {
-        display: flex;
-        gap: 1rem;
-        transition: transform 0.5s ease;
-      }
-
-      .opinions-row-1 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .opinions-row-2 {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .opinion-card {
-        background-color: rgba(255, 255, 255, 0.06);
-        border-radius: 17px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        min-width: 300px;
-        height: 250px;
-        flex: 1;
-      }
-
-      .opinion-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
-      }
-
-      .opinion-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #ccc;
-        margin-right: 1rem;
-        overflow: hidden;
-      }
-
-      .opinion-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .opinion-author {
-        flex: 1;
-      }
-
-      .opinion-name {
-        font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 0.2rem;
-      }
-
-      .opinion-title {
-        font-size: 0.8rem;
-        color: #ffffff;
-      }
-
-      .opinion-text {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        color: #ddd;
-        margin-bottom: 1rem;
-        height: 120px;
-        overflow: hidden;
-      }
-
-      .opinion-stars {
-        color: #ffffff;
-        letter-spacing: 2px;
-      }
-
-      .carousel-navigation {
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
-      }
-
-      .carousel-arrows {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        padding: 0 1rem;
-        z-index: 10;
-      }
-
-      .carousel-arrow {
-        background: transparent;
-        color: white;
-        border: none;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: opacity 0.3s;
-      }
-
-      .carousel-arrow:hover {
-        opacity: 0.7;
-      }
-
-      /* CORRECCIÓN 2: Opiniones en responsive */
-      @media (max-width: 768px) {
-        .opinions-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .opinions-row {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          width: 100%;
-        }
-
-        .opinion-card {
-          width: 100%;
-          min-width: 100%;
-        }
-      }
-
-      /* Añadir indicadores de desplazamiento para tablets */
-      @media (min-width: 769px) and (max-width: 1200px) {
-        .opinions-row {
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          scrollbar-width: thin;
-          scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
-        }
-
-        .opinions-row::-webkit-scrollbar {
-          height: 6px;
-        }
-
-        .opinions-row::-webkit-scrollbar-thumb {
-          background-color: rgba(255, 255, 255, 0.5);
-          border-radius: 3px;
-        }
-
-        .opinion-card {
-          scroll-snap-align: start;
-        }
-      }
-
       /* Banner 6 - Contact */
       .banner6 {
         position: relative;
@@ -893,6 +740,8 @@
         height: auto;
         color: #f5f5f5;
         width: 100%;
+        /* Agregar scroll-margin para mejor navegación */
+        scroll-margin-top: 80px;
       }
 
       .contact-container {
@@ -907,7 +756,6 @@
 
       .coffee-illustration {
         flex: 0 0 300px;
-
         display: flex;
         max-width: 100%;
         justify-content: center;
@@ -944,28 +792,7 @@
       }
 
       /* Responsive adjustments */
-      @media (max-width: 1200px) {
-        .opinions-grid {
-          display: block;
-        }
-
-        .opinions-row {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          margin-bottom: 1rem;
-          padding-bottom: 1rem;
-        }
-
-        .opinion-card {
-          scroll-snap-align: start;
-          flex: 0 0 300px;
-        }
-      }
-
       @media (max-width: 768px) {
-        .banner5-title,
         .contact-title {
           font-size: 2rem;
         }
@@ -977,6 +804,10 @@
         .contact-info {
           flex: 0 0 100%;
           text-align: center;
+        }
+        .coffee-illustration img {
+          max-width: 300px;
+          height: auto;
         }
       }
 
@@ -1124,7 +955,6 @@
           width: 100%;
         }
 
-        .banner5,
         .banner6,
         .banner3,
         .certificates-container,
@@ -1153,16 +983,33 @@
     </style>
   </head>
   <body>
+    <!-- Botón Scroll to Top -->
+    <div class="scroll-to-top" id="scrollToTop">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </div>
+
     <div class="container" id="container2">
-      <header>
+      <header id="inicio">
         <nav>
           <div><img class="logo" src="danibrand.png" alt="" /></div>
           <div class="nav-links">
-            <a href="#" class="active">Inicio</a>
+            <a href="#inicio" class="active">Inicio</a>
             <a href="#appBanner2">Programas</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#certificados">Certificados</a>
-            <a href="https://w.app/qmh8w9" class="contact-btn">Contacto</a>
+            <a href="https://wa.me/+5491123972655" class="contact-btn"
+              >Contacto</a
+            >
           </div>
         </nav>
       </header>
@@ -1180,7 +1027,9 @@
             habilidad de fusionar la creatividad y la funcionalidad para crear
             experiencias digitales cautivadoras.
           </p>
-          <a href="https://w.app/qmh8w9" class="cta-button">Contáctame</a>
+          <a href="https://wa.me/+5491123972655" class="cta-button"
+            >Contáctame</a
+          >
         </div>
       </section>
 
@@ -1211,80 +1060,24 @@
 
     <div class="banner2" id="appBanner2">
       <h2 class="banner2-title">We worked with powerful apps</h2>
-      <div class="app-icons" id="appIcons">
-        <!-- Icons will be inserted here by JavaScript -->
+      <!-- MODIFICADO: Contenedor para el scroll horizontal continuo -->
+      <div class="app-icons-wrapper">
+        <div class="app-icons" id="appIcons">
+          <!-- Los íconos se duplicarán para el scroll continuo -->
+        </div>
       </div>
     </div>
 
-    <!--banner 3-->
+    <!--banner 3 - MODIFICADO: Grid de proyectos en lugar de carrusel-->
     <div class="banner3" id="proyectos">
       <h2 class="banner3-title">Proyectos</h2>
 
-      <div class="banner3-carousel-container">
-        <div class="banner3-carousel" id="projectsCarousel">
-          <!-- Projects will be inserted here by JavaScript -->
-        </div>
-      </div>
-
-      <div class="banner3-navigation">
-        <button
-          class="banner3-nav-button banner3-prev"
-          id="prevButton"
-          aria-label="Previous projects"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 12H5"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M12 19L5 12L12 5"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <button
-          class="banner3-nav-button banner3-next"
-          id="nextButton"
-          aria-label="Next projects"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 12H19"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M12 5L19 12L12 19"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
+      <!-- MODIFICADO: Grid de proyectos en lugar de carrusel -->
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Los proyectos se insertarán aquí mediante JavaScript -->
       </div>
     </div>
+
     <!-- banner 4 -->
     <div class="certificates-container" id="certificados">
       <h1 class="certificates-title">Certificaciones</h1>
@@ -1306,9 +1099,9 @@
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M19 12H5"></path>
               <path d="M12 19l-7-7 7-7"></path>
@@ -1320,9 +1113,9 @@
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M5 12h14"></path>
               <path d="M12 5l7 7-7 7"></path>
@@ -1332,62 +1125,12 @@
       </div>
     </div>
 
-    <!-- Banner 5 - Opinions -->
-    <section class="banner5" id="opiniones">
-      <div class="container">
-        <h2 class="banner5-title">Opiniones</h2>
-
-        <div class="opinions-grid">
-          <div class="opinions-row opinions-row-1" id="opinionsRow1">
-            <!-- First row of opinions (3 cards) will be inserted here by JavaScript -->
-          </div>
-
-          <div class="opinions-row opinions-row-2" id="opinionsRow2">
-            <!-- Second row of opinions (4 cards) will be inserted here by JavaScript -->
-          </div>
-
-          <div class="carousel-arrows">
-            <button class="carousel-arrowss prev-arrows" id="prevOpinion">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button class="carousel-arrow next-arrow" id="nextOpinion">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Banner 6 - Contact -->
     <section class="banner6" id="contacto">
       <div class="contact-container">
         <div class="coffee-illustration">
           <img
-            src="caapybaraa.png"
+            src="Psyduck.png"
             alt="Coffee cup illustration"
             id="coffeeIllustration"
           />
@@ -1396,13 +1139,15 @@
         <div class="contact-info">
           <h2 class="contact-title">¡Contáctame!</h2>
           <div class="contact-item">
-            <a href="https://w.app/qmh8w9">000.123.456.789</a>
+            <a href="https://wa.me/+5491123972655">+5491123972655</a>
           </div>
           <div class="contact-item">
-            <a href="Danielacuartin1@gmail.com">Danielacuartin1@gmail.com</a>
+            <a href="mailto:Danielacuartin1@gmail.com"
+              >Danielacuartin1@gmail.com</a
+            >
           </div>
           <div class="contact-item">
-            <a href="www.linkedin.com/in/daniela-cuartin-7748b4232"
+            <a href="https://www.linkedin.com/in/daniela-cuartin-7748b4232"
               >@Daniela-cuartin-7748b4232</a
             >
           </div>
@@ -1417,15 +1162,21 @@
 
       <nav class="footer-nav">
         <ul class="footer-links">
-          <li><a href="#appBanner2" class="footer-link">Inicio</a></li>
-          <li><a href="#proyectos" class="footer-link">Programas</a></li>
-          <li><a href="#certificados" class="footer-link">Proyectos</a></li>
+          <li><a href="#inicio" class="footer-link">Inicio</a></li>
+          <li><a href="#appBanner2" class="footer-link">Programas</a></li>
+          <li><a href="#proyectos" class="footer-link">Proyectos</a></li>
           <li>
-            <a href="https://w.app/qmh8w9" class="footer-link">Certificados</a>
+            <a href="#certificados" class="footer-link">Certificados</a>
           </li>
         </ul>
 
-        <button class="contact-button" id="contactButton">Contacto</button>
+        <button
+          href="https://wa.me/+5491123972655"
+          class="contact-button"
+          id="contactButton"
+        >
+          Contacto
+        </button>
       </nav>
     </footer>
 
@@ -1521,6 +1272,58 @@
       // Start the typewriter effect when the page loads
       window.onload = typeWriter;
 
+      // Funcionalidad del botón Scroll to Top
+      const scrollToTopBtn = document.getElementById("scrollToTop");
+
+      // Mostrar/ocultar botón basado en scroll
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add("visible");
+        } else {
+          scrollToTopBtn.classList.remove("visible");
+        }
+      });
+
+      // Scroll suave al hacer click en el botón
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Actualizar enlaces activos en la navegación
+      function updateActiveNavLink() {
+        const sections = ["inicio", "appBanner2", "proyectos", "certificados"];
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        let currentSection = "";
+
+        sections.forEach((sectionId) => {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              currentSection = sectionId;
+            }
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          const href = link.getAttribute("href");
+          if (
+            href === `#${currentSection}` ||
+            (currentSection === "inicio" && href === "#inicio")
+          ) {
+            link.classList.add("active");
+          }
+        });
+      }
+
+      // Escuchar scroll para actualizar enlaces activos
+      window.addEventListener("scroll", updateActiveNavLink);
+
       document.addEventListener("DOMContentLoaded", function () {
         // App data
         const apps = [
@@ -1601,36 +1404,42 @@
         const appIconsContainer = document.getElementById("appIcons");
         const banner = document.getElementById("appBanner2");
 
-        // Create app icons
-        apps.forEach((app, index) => {
-          const iconDiv = document.createElement("div");
-          iconDiv.className = "app-icon";
-          iconDiv.dataset.index = index;
+        // MODIFICADO: Crear íconos de apps y duplicarlos para el scroll continuo
+        function createAppIcons() {
+          // Limpiar el contenedor
+          appIconsContainer.innerHTML = "";
 
-          const img = document.createElement("img");
-          img.src = app.icon;
-          img.alt = app.name;
-          img.className = "icon-image";
+          // Crear los íconos originales
+          apps.forEach((app, index) => {
+            const iconDiv = document.createElement("div");
+            iconDiv.className = "app-icon";
+            iconDiv.dataset.index = index;
 
-          iconDiv.appendChild(img);
-          appIconsContainer.appendChild(iconDiv);
-        });
+            const img = document.createElement("img");
+            img.src = app.icon;
+            img.alt = app.name;
+            img.className = "icon-image";
+
+            iconDiv.appendChild(img);
+            appIconsContainer.appendChild(iconDiv);
+          });
+
+          // Duplicar los íconos para crear el efecto de scroll infinito
+          const originalIcons = Array.from(appIconsContainer.children);
+          originalIcons.forEach((icon) => {
+            const clone = icon.cloneNode(true);
+            appIconsContainer.appendChild(clone);
+          });
+        }
 
         // Show banner with animation
         setTimeout(() => {
           banner.classList.add("visible");
-
-          // Animate icons with delay
-          const icons = document.querySelectorAll(".app-icon");
-          icons.forEach((icon, index) => {
-            setTimeout(() => {
-              icon.classList.add("animate");
-            }, 300 + index * 100); // 300ms initial delay, then 100ms between each icon
-          });
+          createAppIcons();
         }, 500);
       });
 
-      //banner 3
+      //banner 3 - MODIFICADO: Grid de proyectos en lugar de carrusel
 
       document.addEventListener("DOMContentLoaded", function () {
         // Project data
@@ -1642,7 +1451,7 @@
             image: "zenelif.png?height=280&width=280",
             description:
               "Diseñé una identidad de marca que refleja estrategia, innovación y confianza para una consultora que transforma negocios desde un enfoque inteligente y humano.",
-            link: "https://www.behance.net/gallery/214479733/Zenelif-Consultora", // Añadir link para cada proyecto
+            link: "https://www.behance.net/gallery/214479733/Zenelif-Consultora",
           },
           {
             id: 2,
@@ -1652,7 +1461,7 @@
             description:
               "Creamos una identidad que transmite bienestar y armonía para un spa que honra el cuerpo y el alma a través de experiencias sensoriales profundas.",
             hasLogo: true,
-            link: "https://www.behance.net/gallery/220935959/MERE-SOUL-BODY-HOLISTIC", // Añadir link para cada proyecto
+            link: "https://www.behance.net/gallery/220935959/MERE-SOUL-BODY-HOLISTIC",
           },
           {
             id: 3,
@@ -1661,7 +1470,7 @@
             image: "bevous.png?height=280&width=280",
             description:
               "Desarrollé el branding y diseño de etiquetas para una línea de belleza natural enfocada en el amor propio, la piel consciente y el cuidado auténtico.",
-            link: "https://www.behance.net/gallery/209960085/Be-vous", // Añadir link para cada proyecto
+            link: "https://www.behance.net/gallery/209960085/Be-vous",
           },
           {
             id: 4,
@@ -1670,7 +1479,7 @@
             image: "mbcapital.png?height=280&width=280",
             description:
               "Diseñé el UI/UX en Figma para esta wallet cripto, enfocándome en una experiencia visual clara, moderna y segura para los usuarios del ecosistema digital.",
-            link: "https://www.figma.com/design/HQNxFDuC3Pwib1KnemaGxe/MB-CAPITAL?node-id=0-1&t=GxSS07i7wp0W4sOt-1", // Añadir link para cada proyecto
+            link: "https://www.figma.com/design/HQNxFDuC3Pwib1KnemaGxe/MB-CAPITAL?node-id=0-1&t=GxSS07i7wp0W4sOt-1",
           },
           {
             id: 5,
@@ -1679,7 +1488,7 @@
             image: "20.png?height=280&width=280",
             description:
               "Diseñé su sitio web enfocado en transmitir seguridad, profesionalismo y un estilo limpio que refleja el carácter sólido de esta desarrolladora.",
-            link: "https://danielacuartin1.wixstudio.com/my-site-6", // Añadir link para cada proyecto
+            link: "https://danielacuartin1.wixstudio.com/my-site-6",
           },
           {
             id: 6,
@@ -1688,7 +1497,7 @@
             image: "18.png?height=280&width=280",
             description:
               "Trabajé en el diseño UI/UX para su web, transmitiendo una imagen moderna y fresca para una marca de colágeno que impulsa energía y juventud.",
-            link: "https://www.figma.com/design/IhxTq6RsTG41NoEJW5YX2x/OCTAGENOX--2?node-id=0-1&t=b1vKmylPW6aw0hKB-1", // Añadir link para cada proyecto
+            link: "https://www.figma.com/design/IhxTq6RsTG41NoEJW5YX2x/OCTAGENOX--2?node-id=0-1&t=b1vKmylPW6aw0hKB-1",
           },
           {
             id: 7,
@@ -1697,7 +1506,7 @@
             image: "19.png?height=280&width=280",
             description:
               "Desarrollé su página web en WordPress con Elementor, facilitando una navegación clara y emocional para jóvenes que sueñan con estudiar en el extranjero",
-            link: "https://aeitravelandculture.com/", // Añadir link para cada proyecto
+            link: "https://aeitravelandculture.com/",
           },
           {
             id: 8,
@@ -1706,7 +1515,7 @@
             image: "21.png?height=280&width=280",
             description:
               "Diseñé su página web desde cero con HTML, CSS y JavaScript, construyendo una plataforma humana que refleja los valores y servicios de la agencia.",
-            link: "https://ishumanbeforebrand.com/", // Añadir link para cada proyecto
+            link: "https://ishumanbeforebrand.com/",
           },
           {
             id: 9,
@@ -1715,7 +1524,7 @@
             image: "22.png?height=280&width=280",
             description:
               "Creé el branding de una marca de medicina estética con enfoque moderno, profesional y limpio, resaltando la belleza desde la ciencia y la confianza.",
-            link: "https://drive.google.com/file/d/1ZjPAj_yJ6dTQiLvQRvGjrlP-mnBBuSXn/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1ZjPAj_yJ6dTQiLvQRvGjrlP-mnBBuSXn/view?usp=sharing",
           },
           {
             id: 10,
@@ -1724,7 +1533,7 @@
             image: "23.png?height=280&width=280",
             description:
               "Desarrollé el branding de una consultora enfocada en el retiro, con una identidad cálida y humana que acompaña a las personas en una nueva etapa.",
-            link: "https://drive.google.com/file/d/1bQCymn2qU1hekhBiSvNFnRcLs21S_eB_/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1bQCymn2qU1hekhBiSvNFnRcLs21S_eB_/view?usp=sharing",
           },
           {
             id: 11,
@@ -1733,7 +1542,7 @@
             image: "24.png?height=280&width=280",
             description:
               "Diseñé la estrategia de redes sociales para esta marca personal que visibiliza el esfuerzo, los retos y la inspiración de migrar y crecer en Canadá.",
-            link: "https://drive.google.com/file/d/1LxpPZbTPGF1lrYEFzVGWgN_B0kjN9tSj/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1LxpPZbTPGF1lrYEFzVGWgN_B0kjN9tSj/view?usp=sharing",
           },
           {
             id: 12,
@@ -1742,7 +1551,7 @@
             image: "25.png?height=280&width=280",
             description:
               "Llevé sus redes sociales, generando contenido que transmite cercanía y profesionalismo para conectar con familias que buscan su casa ideal.",
-            link: "https://drive.google.com/file/d/1UdmOn_4qvJbWnIGJB3AVOxGBtzmz6UfP/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1UdmOn_4qvJbWnIGJB3AVOxGBtzmz6UfP/view?usp=sharing",
           },
           {
             id: 13,
@@ -1751,7 +1560,7 @@
             image: "26.png?height=280&width=280",
             description:
               "Trabajé su estrategia en redes sociales, generando contenido visualmente atractivo que invita a descubrir el mundo con una empresa cercana y accesible.",
-            link: "https://drive.google.com/file/d/1773TmXwcmcBNB_eprJuZuQ6RTRmS_5wH/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1773TmXwcmcBNB_eprJuZuQ6RTRmS_5wH/view?usp=sharing",
           },
           {
             id: 14,
@@ -1760,7 +1569,7 @@
             image: "27.png?height=280&width=280",
             description:
               "Diseñé el packaging de esta marca de mezcal con un enfoque elegante y auténtico, resaltando la tradición y la fuerza del producto artesanal.",
-            link: "https://drive.google.com/file/d/1H0EKXoSLl7CaJ751MtBffvZu4z8JDPdg/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1H0EKXoSLl7CaJ751MtBffvZu4z8JDPdg/view?usp=sharing",
           },
           {
             id: 15,
@@ -1769,7 +1578,7 @@
             image: "28.png?height=280&width=280",
             description:
               "Desarrollé todo el branding de una repostería que mezcla ternura, sabor y diseño, evocando momentos dulces que se disfrutan desde el corazón.",
-            link: "https://drive.google.com/file/d/18f-oOmtFmSpcw_mIA2gQuL4sVNSKTJFT/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/18f-oOmtFmSpcw_mIA2gQuL4sVNSKTJFT/view?usp=sharing",
           },
           {
             id: 16,
@@ -1778,156 +1587,86 @@
             image: "29.png?height=280&width=280",
             description:
               "Diseñé el packaging para esta marca de bebidas con una identidad vibrante, moderna y dinámica que comunica vitalidad y claridad.",
-            link: "https://drive.google.com/file/d/1u5pR_sX1pArJI1J5P_g8sqo7s9x76X1i/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/1u5pR_sX1pArJI1J5P_g8sqo7s9x76X1i/view?usp=sharing",
           },
           {
-            id: 16,
+            id: 17,
             number: "BRANDING",
             title: "Oratho – La voz que transforma",
             image: "30.png?height=280&width=280",
             description:
               "Creé el branding completo para esta escuela de oratoria, con una imagen poderosa, segura y elegante que inspira a hablar con impacto.",
-            link: "https://drive.google.com/file/d/12SO577q6gSdNSGVAzxhQsEW_8UXBSKk9/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/12SO577q6gSdNSGVAzxhQsEW_8UXBSKk9/view?usp=sharing",
           },
           {
-            id: 16,
+            id: 18,
             number: "BRANDING",
             title: "MB Capital – Marca que evoluciona",
             image: "31.png?height=280&width=280",
             description:
               "Además del diseño UI/UX, desarrollé todo el branding de sus marcas y submarcas, logrando coherencia visual, solidez e identidad a largo plazo.",
-            link: "https://drive.google.com/file/d/12uEhbX4OTnFU5Lxj7dNzocxZhkjBC_WV/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/12uEhbX4OTnFU5Lxj7dNzocxZhkjBC_WV/view?usp=sharing",
           },
-
           {
-            id: 16,
+            id: 19,
             number: "SOCIAL MEDIA",
             title: "Altavita Santuario – Un lugar para renacer",
             image: "33.png?height=280&width=280",
             description:
               "Realicé la estrategia de social media de este residencial en Riviera Nayarit, destacando su esencia serena, natural y llena de armonía.",
-            link: "https://drive.google.com/file/d/12uEhbX4OTnFU5Lxj7dNzocxZhkjBC_WV/view?usp=sharing", // Añadir link para cada proyecto
+            link: "https://drive.google.com/file/d/12uEhbX4OTnFU5Lxj7dNzocxZhkjBC_WV/view?usp=sharing",
           },
         ];
 
-        const carousel = document.getElementById("projectsCarousel");
-        const prevButton = document.getElementById("prevButton");
-        const nextButton = document.getElementById("nextButton");
+        // MODIFICADO: Renderizar proyectos en grid en lugar de carrusel
+        const projectsGrid = document.getElementById("projectsGrid");
 
-        let currentIndex = 0;
-        const projectsPerView = getProjectsPerView();
-        const totalSlides = Math.ceil(projects.length / projectsPerView);
-        let isAnimating = false;
-
-        // Determine how many projects to show based on screen width
-        function getProjectsPerView() {
-          if (window.innerWidth <= 480) return 1;
-          if (window.innerWidth <= 768) return 2;
-          if (window.innerWidth <= 1024) return 3;
-          return 4;
-        }
-
-        // Create project elements
-        function renderProjects() {
-          carousel.innerHTML = "";
-          carousel.style.width = `${totalSlides * 100}%`;
+        // Crear elementos de proyecto en grid
+        function renderProjectsGrid() {
+          projectsGrid.innerHTML = "";
 
           projects.forEach((project) => {
             const projectElement = document.createElement("div");
             projectElement.className = "banner3-project";
 
             let projectContent = `
-                                                          <div class="banner3-project-number">${project.number}</div>
-                                                          <div class="banner3-project-image-container">
-                                                            <img src="${project.image}" alt="${project.title}" class="banner3-project-image">
-                                                            <a href="${project.link}" class="ver-mas-btn" target="_blank" rel="noopener noreferrer">Ver más</a>
-                                                        `;
+              <div class="banner3-project-number">${project.number}</div>
+              <div class="banner3-project-image-container">
+                <img src="${project.image}" alt="${project.title}" class="banner3-project-image">
+                <a href="${project.link}" class="ver-mas-btn" target="_blank" rel="noopener noreferrer">Ver más</a>
+            `;
 
             if (project.hasLogo) {
               projectContent += `
-                                                            <div class="banner3-project-logo">
-
-                                                            </div>
-                                                          `;
+                <div class="banner3-project-logo">
+                </div>
+              `;
             }
 
             if (project.brand) {
               projectContent += `
-                                                            <div class="banner3-project-brand">
-                                                              <h3>${
-                                                                project.brand
-                                                              }</h3>
-                                                              <p>${
-                                                                project.brandSubtitle ||
-                                                                "Brand"
-                                                              } <span>${
+                <div class="banner3-project-brand">
+                  <h3>${project.brand}</h3>
+                  <p>${project.brandSubtitle || "Brand"} <span>${
                 project.year
               }</span></p>
-                                                            </div>
-                                                          `;
+                </div>
+              `;
             }
 
             projectContent += `
-                                                          </div>
-                                                          <h3 class="banner3-project-title">${project.title}</h3>
-                                                          <p class="banner3-project-description">${project.description}</p>
-                                                        `;
+              </div>
+              <h3 class="banner3-project-title">${project.title}</h3>
+              <p class="banner3-project-description">${project.description}</p>
+            `;
 
             projectElement.innerHTML = projectContent;
-            carousel.appendChild(projectElement);
+            projectsGrid.appendChild(projectElement);
           });
-
-          updateCarouselPosition();
         }
 
-        // Update carousel position
-        function updateCarouselPosition() {
-          carousel.style.transform = `translateX(-${
-            (currentIndex * 100) / totalSlides
-          }%)`;
-        }
-
-        // Next slide
-        function nextSlide() {
-          if (isAnimating) return;
-
-          isAnimating = true;
-          currentIndex = (currentIndex + 1) % totalSlides;
-          updateCarouselPosition();
-
-          setTimeout(() => {
-            isAnimating = false;
-          }, 500);
-        }
-
-        // Previous slide
-        function prevSlide() {
-          if (isAnimating) return;
-
-          isAnimating = true;
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          updateCarouselPosition();
-
-          setTimeout(() => {
-            isAnimating = false;
-          }, 500);
-        }
-
-        // Event listeners
-        nextButton.addEventListener("click", nextSlide);
-        prevButton.addEventListener("click", prevSlide);
-
-        // Handle window resize
-        window.addEventListener("resize", () => {
-          const newProjectsPerView = getProjectsPerView();
-          if (newProjectsPerView !== projectsPerView) {
-            // Recalculate and re-render if the number of visible projects changes
-            renderProjects();
-          }
-        });
-
-        // Initial render
-        renderProjects();
+        // Renderizar proyectos inicialmente
+        renderProjectsGrid();
 
         // Monitorear clics en los enlaces "Ver más" para verificar que funcionan
         document.addEventListener("click", (e) => {
@@ -1977,74 +1716,74 @@
             category: "design",
           },
           {
-            id: 1,
+            id: 6,
             title: "Fundamentos de Diseño de Interfaces UX/UI",
             image: "c6.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 2,
+            id: 7,
             title: "Diseño para Redes Sociales",
             image: "c7.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 3,
+            id: 8,
             title: "Diseño de Logotipos",
             image: "c8.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 4,
+            id: 9,
             title: "Diseño Editorial",
             image: "c9.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 5,
+            id: 10,
             title: "Adobe Photoshop Avanzado",
             image: "c10.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 3,
+            id: 11,
             title: "Diseño de Logotipos",
             image: "c11.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 4,
+            id: 12,
             title: "Diseño Editorial",
             image: "c12.png?height=200&width=300",
             category: "design",
           },
           {
-            id: 5,
+            id: 13,
             title: "Adobe Photoshop Avanzado",
             image: "c13.png?height=200&width=300",
             category: "web",
           },
           // Web certificates
           {
-            id: 6,
+            id: 14,
             title: "Programación Básica",
             image: "c14.png?height=200&width=300",
             category: "web",
           },
           {
-            id: 7,
+            id: 15,
             title: "Desarrollo Frontend con React",
             image: "c15.png?height=200&width=300",
             category: "web",
           },
           {
-            id: 8,
+            id: 16,
             title: "JavaScript Profesional",
             image: "c16.png?height=200&width=300",
             category: "web",
           },
           {
-            id: 9,
+            id: 17,
             title: "Node.js Básico",
             image: "c17.png?height=200&width=300",
             category: "web",
@@ -2169,238 +1908,25 @@
         filterAndRenderCertificates("design");
       });
 
-      //banner 5 y 6
       document.addEventListener("DOMContentLoaded", function () {
-        // Opinion data
-        const opinions = [
-          // First row (3 opinions)
-          {
-            id: 1,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 1,
-          },
-          {
-            id: 2,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 1,
-          },
-          {
-            id: 3,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 1,
-          },
-
-          // Second row (4 opinions)
-          {
-            id: 4,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 2,
-          },
-          {
-            id: 5,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 2,
-          },
-          {
-            id: 6,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 2,
-          },
-          {
-            id: 7,
-            name: "Persona #1",
-            title: "CEO de empresa",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            stars: 5,
-            avatar: "placeholder.svg?height=40&width=40",
-            row: 2,
-          },
-        ];
-
-        // DOM elements
-        const opinionsRow1 = document.getElementById("opinionsRow1");
-        const opinionsRow2 = document.getElementById("opinionsRow2");
-        const prevOpinionBtn = document.getElementById("prevOpinion");
-        const nextOpinionBtn = document.getElementById("nextOpinion");
+        // Set coffee illustration
         const coffeeIllustration =
           document.getElementById("coffeeIllustration");
+        coffeeIllustration.src = "./Psyduck.png";
 
-        // Set coffee illustration
-        coffeeIllustration.src = "./caapybaraa.png";
-
-        let currentIndex = 0;
-        let isAnimating = false;
-
-        // Render opinion cards
-        function renderOpinions() {
-          // Clear existing opinions
-          opinionsRow1.innerHTML = "";
-          opinionsRow2.innerHTML = "";
-
-          // Filter opinions by row
-          const row1Opinions = opinions.filter((opinion) => opinion.row === 1);
-          const row2Opinions = opinions.filter((opinion) => opinion.row === 2);
-
-          // Render first row (3 opinions)
-          row1Opinions.forEach((opinion) => {
-            const opinionCard = createOpinionCard(opinion);
-            opinionsRow1.appendChild(opinionCard);
-          });
-
-          // Render second row (4 opinions)
-          row2Opinions.forEach((opinion) => {
-            const opinionCard = createOpinionCard(opinion);
-            opinionsRow2.appendChild(opinionCard);
-          });
-        }
-
-        // Create opinion card element
-        function createOpinionCard(opinion) {
-          const opinionCard = document.createElement("div");
-          opinionCard.className = "opinion-card";
-
-          const starsHTML =
-            "★".repeat(opinion.stars) + "☆".repeat(5 - opinion.stars);
-
-          opinionCard.innerHTML = `
-                                                         <div class="opinion-header">
-                                                           <div class="opinion-avatar">
-                                                             <img src="${opinion.avatar}" alt="${opinion.name}">
-                                                           </div>
-                                                           <div class="opinion-author">
-                                                             <div class="opinion-name">${opinion.name}</div>
-                                                             <div class="opinion-title">${opinion.title}</div>
-                                                           </div>
-                                                         </div>
-                                                         <div class="opinion-text">${opinion.text}</div>
-                                                         <div class="opinion-stars">${starsHTML}</div>
-                                                       `;
-
-          return opinionCard;
-        }
-
-        // Carousel functionality for mobile view
-        function setupMobileCarousel() {
-          if (window.innerWidth <= 1200) {
-            // Add touch scrolling for mobile
-            const rows = document.querySelectorAll(".opinions-row");
-            rows.forEach((row) => {
-              row.addEventListener("scroll", function () {
-                // You can add scroll indicators here if needed
-              });
-            });
-          }
-        }
-
-        // Next slide animation (for visual effect only in this layout)
-        function nextSlide() {
-          if (isAnimating) return;
-
-          isAnimating = true;
-
-          // Add a subtle animation effect
-          const cards = document.querySelectorAll(".opinion-card");
-          cards.forEach((card) => {
-            card.style.transition = "transform 0.3s ease";
-            card.style.transform = "scale(0.95)";
-
-            setTimeout(() => {
-              card.style.transform = "scale(1)";
-            }, 300);
-          });
-
-          setTimeout(() => {
-            isAnimating = false;
-          }, 600);
-        }
-
-        // Previous slide animation (for visual effect only in this layout)
-        function prevSlide() {
-          if (isAnimating) return;
-
-          isAnimating = true;
-
-          // Add a subtle animation effect
-          const cards = document.querySelectorAll(".opinion-card");
-          cards.forEach((card) => {
-            card.style.transition = "transform 0.3s ease";
-            card.style.transform = "scale(0.95)";
-
-            setTimeout(() => {
-              card.style.transform = "scale(1)";
-            }, 300);
-          });
-
-          setTimeout(() => {
-            isAnimating = false;
-          }, 600);
-        }
-
-        // Event listeners
-        prevOpinionBtn.addEventListener("click", prevSlide);
-        nextOpinionBtn.addEventListener("click", nextSlide);
-
-        // Handle window resize
-        window.addEventListener(
-          "resize",
-          debounce(function () {
-            setupMobileCarousel();
-          }, 250)
-        );
-
-        // Debounce function to limit resize events
-        function debounce(func, wait) {
-          let timeout;
-          return function (...args) {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
-          };
-        }
-
-        // Gradient animation
+        // Gradient animation for banner6
         function animateGradient() {
-          const banner5 = document.querySelector(".banner5");
           const banner6 = document.querySelector(".banner6");
-
           let hue = 0;
 
           setInterval(() => {
             hue = (hue + 1) % 360;
             const color1 = "#000000";
             const color2 = `hsl(${hue}, 100%, 20%)`;
-
-            banner5.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
             banner6.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
           }, 100);
         }
 
-        // Initial render
-        renderOpinions();
-        setupMobileCarousel();
         animateGradient();
       });
 
@@ -2408,15 +1934,8 @@
         const contactButton = document.getElementById("contactButton");
 
         contactButton.addEventListener("click", function () {
-          // You can replace this with your desired contact action
-          // For example, scroll to contact section, open modal, or navigate to contact page
-          alert("Contact action triggered!");
-
-          // Example: Scroll to contact section
-          // document.querySelector('#contact-section').scrollIntoView({ behavior: 'smooth' });
-
-          // Example: Navigate to contact page
-          // window.location.href = '/contact';
+          // Redirect to WhatsApp
+          window.open("https://wa.me/+5491123972655", "_blank");
         });
 
         // Optional: Add smooth scroll for footer links

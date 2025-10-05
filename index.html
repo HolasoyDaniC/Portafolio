@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
     <title>Dani - Portfolio</title>
 
     <style>
@@ -161,12 +165,11 @@
           height: 20px;
         }
       }
-
-      /* Banner Section */
-      .banner {
+      /* Hero Banner Section - Two Column Layout */
+      .hero-banner {
         position: relative;
         min-height: 500px;
-        padding: 60px 0 0 0;
+        padding: 60px 20px;
         overflow: hidden;
       }
 
@@ -188,27 +191,56 @@
         pointer-events: none;
       }
 
-      .banner-content {
-        max-width: 600px;
+      .hero-banner-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
         position: relative;
         z-index: 1;
       }
 
-      .banner-title {
+      .hero-banner-text {
+        flex: 1;
+        max-width: 600px;
+      }
+
+      .hero-banner-image {
+        flex: 1;
+        max-width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-banner-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+
+      .hero-banner-title {
         font-size: 4rem;
         font-weight: 800;
         line-height: 1.1;
         margin-bottom: 20px;
       }
 
-      .banner-description {
+      .typewriter-text {
+        display: inline-block;
+        min-height: 1.2em;
+      }
+
+      .hero-banner-description {
         font-size: 16px;
         line-height: 1.6;
         margin-bottom: 30px;
-        max-width: 500px;
       }
 
-      .cta-button {
+      .hero-cta-button {
         display: inline-block;
         padding: 10px 25px;
         border: 1px solid #000;
@@ -219,11 +251,42 @@
         transition: all 0.3s;
       }
 
-      .cta-button:hover {
+      .hero-cta-button:hover {
         background-color: #000;
         color: #fff;
       }
 
+      model-viewer {
+        width: 500px;
+        height: 500px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-banner-wrapper {
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .hero-banner-text {
+          max-width: 100%;
+        }
+
+        .hero-banner-image {
+          max-width: 100%;
+          height: 300px;
+        }
+        model-viewer {
+          margin-top: -80px;
+          width: 300px;
+          height: 300px;
+          margin-bottom: -80px;
+        }
+
+        .hero-banner-title {
+          font-size: 2.5rem;
+        }
+      }
       /* Services Section */
       .services {
         display: grid;
@@ -1014,22 +1077,33 @@
         </nav>
       </header>
 
-      <section class="banner">
+      <section class="hero-banner">
         <div class="gradient-bg" id="gradient"></div>
-        <div class="banner-content">
-          <h1 class="banner-title">
-            Hola, soy Dani<br />
-            <span class="typewriter-text" id="typewriter"></span>
-          </h1>
-          <p class="banner-description">
-            Como diseñador con experiencia en marketing, una pasión por la
-            ilustración y conocimientos en programación frontend, tengo la
-            habilidad de fusionar la creatividad y la funcionalidad para crear
-            experiencias digitales cautivadoras.
-          </p>
-          <a href="https://wa.me/+5491123972655" class="cta-button"
-            >Contáctame</a
-          >
+        <div class="hero-banner-wrapper">
+          <div class="hero-banner-text">
+            <h1 class="hero-banner-title">
+              Hola, soy Dani<br />
+              <span class="typewriter-text" id="typewriter"></span>
+            </h1>
+            <p class="hero-banner-description">
+              Como diseñador con experiencia en marketing, una pasión por la
+              ilustración y conocimientos en programación frontend, tengo la
+              habilidad de fusionar la creatividad y la funcionalidad para crear
+              experiencias digitales cautivadoras.
+            </p>
+            <a href="https://w.app/qmh8w9" class="hero-cta-button"
+              >Contáctame</a
+            >
+          </div>
+          <div class="hero-banner-image">
+            <model-viewer
+              src="choco_bunny/scene.gltf"
+              camera-controls
+              disable-zoom
+              auto-rotate
+              poster="Loaderdani.gif"
+            />
+          </div>
         </div>
       </section>
 
@@ -1451,17 +1525,17 @@
             image: "zenelif.png?height=280&width=280",
             description:
               "Diseñé una identidad de marca que refleja estrategia, innovación y confianza para una consultora que transforma negocios desde un enfoque inteligente y humano.",
-            link: "https://www.behance.net/gallery/214479733/Zenelif-Consultora",
+            link: "https://drive.google.com/file/d/1U6HYAvHkdnCeTZ93jQNK_WfsXb1DmjBq/view?usp=sharing",
           },
           {
             id: 2,
             number: "BRANDING",
-            title: "Mere – Sul Body Holistic",
+            title: "Mere – Soul Body Holistic",
             image: "mere.png?height=280&width=280",
             description:
               "Creamos una identidad que transmite bienestar y armonía para un spa que honra el cuerpo y el alma a través de experiencias sensoriales profundas.",
             hasLogo: true,
-            link: "https://www.behance.net/gallery/220935959/MERE-SOUL-BODY-HOLISTIC",
+            link: "https://drive.google.com/file/d/1_PFVorPZq9DQKnmswN2upuu96U8u3qrl/view?usp=sharing",
           },
           {
             id: 3,
@@ -1470,7 +1544,7 @@
             image: "bevous.png?height=280&width=280",
             description:
               "Desarrollé el branding y diseño de etiquetas para una línea de belleza natural enfocada en el amor propio, la piel consciente y el cuidado auténtico.",
-            link: "https://www.behance.net/gallery/209960085/Be-vous",
+            link: "https://drive.google.com/file/d/1_PFVorPZq9DQKnmswN2upuu96U8u3qrl/view?usp=sharing",
           },
           {
             id: 4,
